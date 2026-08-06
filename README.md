@@ -12,7 +12,7 @@ I work at the intersection of **design systems, design engineering, and regulate
 
 | Project | Case Study |
 |---|---|
-| **NEXIA** — Design system concept project (Payments & Checkout, YRIS AI identity assistant) | [Read case study](./nexia/README.md) |
+| **NEXIA** — Design system concept project (Payments & Checkout, YRIS AI identity assistant) | [Read case study](./01-nexia/nexia.md) |
 | **Proptech Platform** — Design system ownership & UX redesign for a proptech listing product | [Read case study](./proptech-platform/README.md) |
 | **Proptech UI Kit** — Front-end implementation of a token-driven component architecture | [Read case study](./proptech-ui-kit/README.md) |
 | **TraceQ** — Informational screening tool exploring autistic trait indicators | [Read case study](./traceq/README.md) |
@@ -46,4 +46,4 @@ This is a living document. As new projects are designed and built, they'll be ad
 
 ## License
 
-Content and case studies in this repository are shared for portfolio and review purposes. Please do not reproduce without permission.
+Content and case studies in this repository are shared for portfolio and review purposes. ⚠️ Please do not reproduce without permission.
