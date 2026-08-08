@@ -31,7 +31,7 @@ This repo serves two purposes:
 1. **Case studies & methodology** — a transparent look at how I approach product design problems: research, systems thinking, token architecture, and interaction design, documented project by project.
 2. **Code literacy** — as I move toward Design Engineering, this is also where implementation work lives, showing the connection between design decisions and the code that ships them.
 
-This is a living document. As new projects are designed and built, they'll be added here first, before migrating to a dedicated site.
+> 💡 This is a living document. As new projects are designed and built, they'll be added here first, before migrating to a dedicated site.
 
 ---
 
@@ -47,4 +47,7 @@ This is a living document. As new projects are designed and built, they'll be ad
 
 ## 🔒 License
 
-Content and case studies in this repository are shared for portfolio and review purposes. ⚠️ Please do not reproduce without permission.
+This repository is © 2026 José David Albarrán Velásquez ("JD Albarrán"). All rights reserved.
+
+Content, case studies, and code in this repository are shared publicly for portfolio and review purposes only. <br/>
+No reproduction, redistribution, or reuse is authorized without explicit permission. See [LICENSE](./LICENSE) for full terms.
