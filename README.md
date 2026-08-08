@@ -12,13 +12,13 @@ I work at the intersection of **design systems, design engineering, and regulate
 
 | Project | Case Study |
 |---|---|
-| **NEXIA** — Design system concept project (Payments & Checkout, YRIS AI identity assistant) | [Read case study](./01-nexia/nexia.md) |
-| **Turismo Roma** — Concept project — B2B trust and availability platform for Rome's tourism sector | [Read case study](./proptech-platform/README.md) |
-| **TraceQ** — A responsibly-scoped screening tool built on the validated AQ-10 instrument | [Read case study](./proptech-ui-kit/README.md) |
-| **soloist** — An AI conversational assistant guiding Italian freelancers through fiscal diagnosis | [Read case study](./traceq/README.md) |
-| **Intérprete de Busta Paga** — A concept tool that verifies Italian payslips against fiscal logic and explains errors in plain language | [Read case study](./busta-paga-interprete/README.md) |
-| **Settly** — A multilingual product for managing Italy's residence-permit process | [Read case study](./turismo-roma/README.md) |
-| **atac-roma** — A product strategy reframing of Rome's public transit ticketing | [Read case study](./turismo-roma/README.md) |
+| **NEXIA** — Design system concept project (Payments & Checkout, YRIS AI identity assistant) | [Read](./01-nexia/nexia.md) |
+| **Turismo Roma** — Concept project — B2B trust and availability platform for Rome's tourism sector | [Read](./02-turismo-roma/turismo-roma.md) |
+| **TraceQ** — A responsibly-scoped screening tool built on the validated AQ-10 instrument | [Read](./03-TraceQ/traceQ.md) |
+| **soloist** — An AI conversational assistant guiding Italian freelancers through fiscal diagnosis | [Read](./04-soloist/soloist.md) |
+| **Intérprete de Busta Paga** — A concept tool that verifies Italian payslips against fiscal logic and explains errors in plain language | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
+| **Settly** — A multilingual product for managing Italy's residence-permit process | [Read](./06-Settly/settly.md) |
+| **atac-roma** — A product strategy reframing of Rome's public transit ticketing | [Read](./07-atac-roma/atac-roma.md) |
 
 Each folder contains its own README with the full case study — problem framing, process, decisions, and outcomes. Some also link out to Behance for visual walkthroughs.
 
