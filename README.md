@@ -10,15 +10,15 @@ I work at the intersection of **design systems, design engineering, and regulate
 
 ## 📚 Case Studies
 
-| Project | Case Study |
-|---|---|
-| **NEXIA** — Design system concept project (Payments & Checkout, YRIS AI identity assistant) | [Read](./01-nexia/nexia.md) |
-| **Turismo Roma** — Concept project — B2B trust and availability platform for Rome's tourism sector | [Read](./02-turismo-roma/turismo-roma.md) |
-| **TraceQ** — A responsibly-scoped screening tool built on the validated AQ-10 instrument | [Read](./03-TraceQ/traceQ.md) |
-| **soloist** — An AI conversational assistant guiding Italian freelancers through fiscal diagnosis | [Read](./04-soloist/soloist.md) |
-| **Intérprete de Busta Paga** — A concept tool that verifies Italian payslips against fiscal logic and explains errors in plain language | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
-| **Settly** — A multilingual product for managing Italy's residence-permit process | [Read](./06-Settly/settly.md) |
-| **atac-roma** — A product strategy reframing of Rome's public transit ticketing | [Read](./07-atac-roma/atac-roma.md) |
+| # | Projects | Description | Read here |
+|---|---|---|---|
+| 01 | **NEXIA** | *Design system concept project (Payments & Checkout, YRIS AI identity assistant)* | [Read](./01-nexia/nexia.md) |
+| 02 | **Turismo Roma** | *Concept project — B2B trust and availability platform for Rome's tourism sector* | [Read](./02-turismo-roma/turismo-roma.md) |
+| 03 | **TraceQ** | *A responsibly-scoped screening tool built on the validated AQ-10 instrument* | [Read](./03-TraceQ/traceQ.md) |
+| 04 | **soloist** | *An AI conversational assistant guiding Italian freelancers through fiscal diagnosis* | [Read](./04-soloist/soloist.md) |
+| 05 | **Intérprete de Busta Paga** | *A concept tool that verifies Italian payslips against fiscal logic and explains errors in plain language* | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
+| 06 | **Settly** | *A multilingual product for managing Italy's residence-permit process* | [Read](./06-Settly/settly.md) |
+| 07 | **atac-roma** | *A product strategy reframing of Rome's public transit ticketing* | [Read](./07-atac-roma/atac-roma.md) |
 
 Each folder contains its own README with the full case study — problem framing, process, decisions, and outcomes. Some also link out to Behance for visual walkthroughs.
 
