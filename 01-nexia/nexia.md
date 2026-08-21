@@ -1,21 +1,15 @@
----
-title: "NEXIA"
-subtitle: "Decentralized identity wallet with granular on-chain permissions"
-role: "Senior Product Designer — sole contributor"
-type: "Self-directed design systems investigation"
-stage: "0→1, MVP in definition"
-platforms: ["Mobile-first", "Desktop"]
-business_model: "B2B2C"
-tools: ["Figma"]
-tags: ["design-systems", "digital-identity", "web3", "concept-project"]
-status: "concept"
-date: "2026"
-summary: "A self-directed investigation into what a design system looks like when treated as a contract between design and engineering — tested against a genuinely complex, multi-actor identity product."
----
-
 # NEXIA
 
 **Decentralized identity wallet with granular on-chain permissions**
+
+---
+
+**Year:** 2026
+**Role:** Senior Product Designer — sole contributor
+**Type:** Self-directed design systems investigation
+**Stage modeled:** 0→1, MVP in definition
+**Platforms:** Mobile-first, desktop
+**Business model modeled:** B2B2C
 
 ---
 
@@ -270,6 +264,38 @@ It is not evidence of shipping. It is not evidence of working inside a team. It 
 Whether the reasoning is sound. Whether the decisions hold up against the alternatives they rejected. Whether the contract described is the kind of contract the reader would want their own design system to operate under. Whether the capability the project demonstrates is the capability the reader is hiring for.
 
 The project does not ask to be evaluated on outcomes it did not produce.
+
+---
+
+## Product Reality
+
+Everything above evaluates the contract on its own terms — whether the reasoning holds, whether the artifacts are complete, whether the system resolves what it set out to resolve. None of that answers a different question: does this hold up as a business, and does it hold up when real actors misbehave. This section stress-tests the design against those two conditions directly, and names where the design has not yet been tested rather than implying it has.
+
+### Business reality
+
+NEXIA is modeled as B2B2C, and the economic case has to be made to the consumer organization, not to the identity holder. The holder benefits from the product but is not the one signing a contract or approving a budget line. The buyer is whoever inside the consumer organization owns verification cost, compliance exposure, or both — most plausibly a compliance, risk, or identity-and-access lead evaluating whether to route KYC-equivalent checks through NEXIA instead of custodying the data themselves.
+
+The economic argument the design supports is a risk-transfer argument, not a growth argument. Every attribute the organization does not custody is an attribute it cannot leak, cannot be subpoenaed for beyond what the audit trail already discloses, and does not have to secure, retain, or eventually delete under a GDPR erasure request. The audit panel's third layer — the exportable, independently verifiable technical record — is the artifact that turns "we verified this holder" into evidence a regulator or auditor accepts without the organization having to produce the underlying personal data. That is the metric that plausibly matters to the buyer: reduced data-custody liability per verification, not conversion rate or engagement.
+
+What I have not established, and will not pretend to have established, is pricing, unit economics, or a validated willingness to pay. I do not know whether an organization would pay per verification, pay a platform fee, or expect this to be free infrastructure subsidized by something else. I do not know how NEXIA's cost compares to an organization simply hiring a compliance vendor and accepting the custody risk it already accepts today. Those are commercial questions this project was never positioned to answer, and the case study should not read as if they were answered.
+
+### Operational reality
+
+A few of the states the system already specifies exist precisely because I was trying to anticipate real misbehavior, not just the happy path. Worth naming explicitly, against the actual failure modes:
+
+**A credential doesn't verify cleanly.** The Attribute Disclosure component's "unverifiable" state and the credential-state taxonomy (verified, self-issued, unverifiable) exist for this. What the system does not yet resolve is the harder version of the problem: a credential that verifies technically but is being presented in bad faith — a valid credential used outside its intended context, or a holder presenting a credential issued for one purpose to satisfy a request for another. The token and state layer can represent "unverifiable." It cannot yet represent "verifiable but misused," which is a policy question as much as a design one.
+
+**Two actors see conflicting state.** Because permission changes are asynchronous on-chain writes, there is a real window where the holder has revoked a permission locally, the revocation is broadcasting, and the consumer organization's system still reflects the prior state until confirmation lands. The synchrony model accounts for this at the holder's side — the pending state is visible and honest. It does not yet specify what the organization's dashboard shows during that same window, or what obligation the organization has if it acts on stale state before confirmation completes. That gap is real, and I'm naming it here rather than in the debt roadmap because it is a cross-actor consistency problem, not a single-component gap.
+
+**The user abandons mid-flow.** Onboarding's recovery confirmation is designed to prevent silent abandonment of the one flow where abandonment is catastrophic — but the design does not specify what happens to an identity that was created and never confirmed. Does it exist in a limbo state indefinitely? Does it expire? That is an operational policy decision the design assumed would exist and did not itself make.
+
+**Network congestion stretches confirmation past the expected window.** The synchrony model states expected durations (fifteen seconds to five minutes) but does not define a hard timeout or an escalation path for an on-chain write that never confirms. A transaction stuck in "confirming" for hours needs a resolution the current Transaction Status contract does not specify.
+
+Each of these is a real gap, not a hypothetical one, and each is the kind of thing that only becomes visible when you ask the design to survive contact with actors who are careless, adversarial, or simply offline at the wrong moment — which is exactly why I'm recording them here instead of leaving them implicit in the debt roadmap above.
+
+### What I'd do differently as a real product
+
+Under a real team, real funding, and a real buyer, the first thing I would change is sequencing: I would validate the business case — who pays, for what unit, at what price — before investing further in component-level polish, because right now the design is more mature than the commercial model underneath it, and that imbalance would not survive a real founding team's first budget conversation. I would also push the cross-actor consistency problem (organization state lagging holder state during on-chain confirmation) to resolution before writing another state contract, because it is the kind of gap that looks minor in a case study and becomes a support and trust incident in production. Everything else — the governance model, the token architecture, the accessibility criteria — I would keep largely as designed; those are the parts of the system I trust held up to the pressure of the question, not the parts I'd expect to survive contact with a real engineering team unchanged.
 
 ---
 
