@@ -18,9 +18,14 @@ summary: "A responsibly-scoped screening tool built on the validated AQ-10 instr
 
 ## Context
 
-Self-assessment tools for sensitive traits are often designed like generic quizzes — cheerful, gamified, indifferent to the regulatory and ethical weight of what they're actually measuring. TraceQ started as an exploration of that gap: what does it look like to design an informational screening tool for autism-associated traits with the same rigor you'd apply to a regulated product, without pretending to be a clinical instrument?
+Self-assessment tools for sensitive traits are often designed like generic quizzes <br/> — cheerful, gamified, indifferent to the regulatory and ethical weight of what they're actually measuring. 
+<br/>
+**TraceQ started as an exploration of that gap:** what does it look like to design an informational screening tool for autism-associated traits with the same rigor you'd apply to a regulated product, without pretending to be a clinical instrument?
 
-TraceQ is built around the AQ-10, a short, validated screening instrument developed by Baron-Cohen et al. at the Autism Research Centre, Cambridge. It's explicitly framed as an informational starting point — never a diagnosis, never a conclusion — designed to support a conversation with a professional, not replace one.
+TraceQ is built around the AQ-10, a short, validated screening instrument developed by Baron-Cohen et al. at the Autism Research Centre, Cambridge.<br/> 
+It's explicitly framed as an informational starting point — never a diagnosis, never a conclusion — designed to support a conversation with a professional, not replace one.
+<br/>
+<br/>
 
 ## What I designed
 
@@ -30,13 +35,18 @@ TraceQ is built around the AQ-10, a short, validated screening instrument develo
 - Rejected a traffic-light color scheme for the questionnaire's response options. The AQ-10 includes reverse-scored items, so a fixed color per option would imply a "correct answer" that shifts inconsistently between questions — the visual system had to follow the instrument's actual scoring logic, not a default pattern.
 - Built a `choice-item` component with idle, hover, focused, and pressed states, kept conceptually separate from Button — it answers a selection pattern, not an action.
 - Prototyped single-select logic using Figma variables bound to variant properties, so choosing one option deselects the others.
+<br/>
+<br/>
 
 ## Tools
 
 Figma, Figma Make, Figma Motion, Claude
+<br/>
+<br/>
 
 ## What I learned
 
-Designing responsibly in a sensitive domain isn't a tone decision — it's a series of specific, checkable constraints: instrument licensing, consent scope, classification boundaries, and scoring logic. The best interface decisions came from understanding the AQ-10 itself, not from styling conventions.
-
-TraceQ remains in exploration/prototype phase.
+> ## Designing responsibly in a sensitive domain isn't a tone decision
+> — it's a series of specific, checkable constraints: instrument licensing, consent scope, classification boundaries, and scoring logic.
+> The best interface decisions came from understanding the AQ-10 itself, not from styling conventions.
+>> TraceQ remains in exploration/prototype phase.
