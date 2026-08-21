@@ -8,17 +8,19 @@ I work at the intersection of **design systems, design engineering, and regulate
 
 ---
 
-## 📚 Case Studies
+## 📚 Main Portfolio
 
 | # | Projects | Description | Read here |
 |---|---|---|---|
-| 01 | **NEXIA** | *Design system concept project (Payments & Checkout, YRIS AI identity assistant)* | [Read](./01-nexia/nexia.md) |
-| 02 | **Turismo Roma** | *Concept project — B2B trust and availability platform for Rome's tourism sector* | [Read](./02-turismo-roma/turismo-roma.md) |
-| 03 | **TraceQ** | *A responsibly-scoped screening tool built on the validated AQ-10 instrument* | [Read](./03-TraceQ/traceQ.md) |
-| 04 | **soloist** | *An AI conversational assistant guiding Italian freelancers through fiscal diagnosis* | [Read](./04-soloist/soloist.md) |
-| 05 | **Intérprete de Busta Paga** | *A concept tool that verifies Italian payslips against fiscal logic and explains errors in plain language* | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
-| 06 | **Settly** | *A multilingual product for managing Italy's residence-permit process* | [Read](./06-Settly/settly.md) |
-| 07 | **atac-roma** | *A product strategy reframing of Rome's public transit ticketing* | [Read](./07-atac-roma/atac-roma.md) |
+| 01 | **NEXIA** | *Complex identity / permissions / design systems* | [Read](./01-nexia/nexia.md) |
+| 02 | **Turismo Roma** | *B2B trust / verification / operational systems* | [Read](./02-turismo-roma/turismo-roma.md) |
+| 03 | **Targhino** | *Regulatory product / service design / end-to-end journey* | [Read](./03-TraceQ/traceQ.md) |
+
+## 🕹️ Supporting projects
+
+| 04 | **TraceQ** | *Regulated / responsible UX* | [Read](./04-soloist/soloist.md) |
+| 05 | **Intérprete Busta Paga** | *Financial data · complex information · trust & clarity* | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
+| 06 | **Soloist** | *AI / conversational product* | [Read](./06-Settly/settly.md) |
 
 Each folder contains its own README with the full case study — problem framing, process, decisions, and outcomes. Some also link out to Behance for visual walkthroughs.
 
