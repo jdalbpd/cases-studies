@@ -59,6 +59,18 @@ Both problems share the same root cause: no reliable verification or access mech
 
 Figma, Figma Make, Claude (AI-assisted)
 
+## Product Reality
+
+**Business reality.** The buyer is the agency, not the tourist or the guide — an agency owner or operations lead deciding whether to route guide checks and ticket-quota visibility through this platform instead of doing both informally, as most currently do. The economic argument is risk and revenue protection rather than growth: working with an unlicensed guide is a reputational and potentially legal exposure the agency currently has no reliable way to check for, and a sold-out ticket allocation the agency didn't see coming is lost bookings it can't recover mid-season. Given the market context already documented — SMBs at 80.6% of the tour-operator software customer base, 78% SaaS/cloud adoption — a per-agency subscription, likely tiered by guide count, is the plausible model, but that's a hypothesis extending from market data, not a validated price or willingness-to-pay. I don't know what an agency would actually pay, or how that compares to the cost of continuing to verify guides manually.
+
+**Operational reality.** Three failure modes worth naming beyond the registry-outage handling already built into the state system:
+
+- **Stale ticket data.** The availability panel is read-only in v1, aggregating verified guides' quotas — but if the national registry or Colosseum system updates slower than real sales move, an agency could see quota that no longer exists. The design doesn't yet specify a staleness indicator or refresh guarantee.
+- **A guide disputes their own state.** The system distinguishes query failure from license status cleanly, but there's no designed path for a guide who believes a "Revoked" or "Suspended" reading is simply wrong — a registry data error, not a real sanction. Right now the only route back in is the same official case-code process used for active renewals, which may not fit a dispute at all.
+- **Case-code abuse.** The active-renewal case code exists to protect guides genuinely mid-process from losing access at day 15, but the design doesn't specify how a case code is verified as real and current — an unverified or expired code accepted at face value would quietly reopen the exact loophole the grace-window model was built to close.
+
+**What I'd do differently as a real product.** I'd validate willingness to pay and actual registry data-access terms before building further — the whole quota and verification model assumes the national registry will expose suspension/expiration data to a third party, and I don't know if that's actually permitted. I'd also design the dispute path before shipping the license-state system, since a false "Revoked" reading with no appeal is the kind of failure that erodes trust in the verification layer faster than any uptime problem would.
+
 ## What I learned
 
 Treating guide verification as an identity-trust problem — the same logic used in fintech KYC flows — was the most useful reframe in this project; it's a pattern that transfers cleanly to a domain that has never applied it. The harder design problem wasn't the "clean" states like Valid or Revoked — it was building enough nuance into the graduated-access model that the system stays firm on abuse (no quiet exceptions for Revoked or No match) without punishing ordinary administrative delay. Several of the underlying assumptions — quota distribution logic, real renewal timelines, whether the national registry exposes suspension data to third parties — are explicitly flagged as unvalidated in the project documentation, since this was built from market research rather than access to the actual licensing infrastructure.
