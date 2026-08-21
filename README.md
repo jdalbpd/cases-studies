@@ -17,7 +17,7 @@ I work at the intersection of **design systems, design engineering, and regulate
 | 03 | **Targhino** | *Regulatory product / service design / end-to-end journey* | [Read](./03-TraceQ/traceQ.md) |
 
 ## 🕹️ Supporting projects
-
+|---|---|---|---|
 | 04 | **TraceQ** | *Regulated / responsible UX* | [Read](./04-soloist/soloist.md) |
 | 05 | **Intérprete Busta Paga** | *Financial data · complex information · trust & clarity* | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
 | 06 | **Soloist** | *AI / conversational product* | [Read](./06-Settly/settly.md) |
