@@ -25,7 +25,9 @@ Every project here reflects that — token architecture, component logic, and in
 | 05 | **Intérprete Busta Paga** | *Financial data · complex information · trust & clarity* | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
 | 06 | **Soloist** | *AI / conversational product* | [Read](./06-soloist/soloist.md) |
 
-Each folder contains its own README with the full case study — problem framing, process, decisions, and outcomes. Some also link out to Behance for visual walkthroughs.
+<br/>
+
+> 💡 Each folder contains its own README with the full case study — problem framing, process, decisions, and outcomes. Some also link out to Behance for visual walkthroughs.
 
 ---
 
