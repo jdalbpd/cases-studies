@@ -5,7 +5,7 @@
 
 This repository is the source of truth for my design work. It is a structured archive of case studies, systems thinking, and process documentation from my practice as I move into Design Engineering. It exists in place of a live portfolio site. Each project below is documented in full with the reasoning, artifacts, and implementation code behind it. Recruiters, engineers, or fellow designers can go as deep as they want.
 
-I work at the intersection of design systems, design engineering, regulated product domains, and complex B2B products. <br/> **My work follows one core rule:** systems before screens. Token architecture, component logic, and information structure are the foundation of every project I think, not an afterthought to visual design.
+I work at the intersection of design systems, design engineering, regulated product domains, and complex B2B products. <br/> 🥸**My work follows one core rule:** systems before screens. Token architecture, component logic, and information structure are the foundation of every project I think, not an afterthought to visual design.
 
 ---
 
@@ -43,7 +43,7 @@ This repo serves two main purposes:
 
 ## 🧢 About Me
 
-**JD (José David Albarrán)**. Senior Product Designer and independent consultant based in Rome, Italy. I work across design systems, design engineering, fintech, and digital identity products.
+**JD (José David Albarrán Velasquez)** | Senior Product Designer based in Rome, Italy. <br/> I work across design systems, design engineering, fintech, and digital identity products.
 
 <div align="center">
 <a href="https://linkedin.com/in/jdalbpd/" target="_blank">
