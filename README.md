@@ -5,7 +5,7 @@
 
 This repository is the source of truth for my design work. It is a structured archive of case studies, systems thinking, and process documentation from my practice as I move into Design Engineering. It exists in place of a live portfolio site. Each project below is documented in full with the reasoning, artifacts, and implementation code behind it. Recruiters, engineers, or fellow designers can go as deep as they want.
 
-I work at the intersection of design systems, design engineering, regulated product domains, and complex B2B products. My work follows one core rule: systems before screens. Token architecture, component logic, and information structure are the foundation of every project here, not an afterthought to visual design.
+I work at the intersection of design systems, design engineering, regulated product domains, and complex B2B products. <br/> **My work follows one core rule:** systems before screens. Token architecture, component logic, and information structure are the foundation of every project I think, not an afterthought to visual design.
 
 ---
 
@@ -26,7 +26,7 @@ I work at the intersection of design systems, design engineering, regulated prod
 
 <br/>
 
-> Each folder contains its own README with the full case study: problem framing, process, decisions, and outcomes. Some folders also link to Behance for visual walkthroughs.
+> Each folder contains its own README with the full case study: problem framing, process, decisions, and outcomes.
 
 ---
 
@@ -34,8 +34,8 @@ I work at the intersection of design systems, design engineering, regulated prod
 
 This repo serves two main purposes:
 
-1. **Case studies and methodology** — A transparent look at how I approach product problems. It covers research, systems thinking, token architecture, and interaction design project by project.
-2. **Code literacy** — As I transition into Design Engineering, this is where implementation work lives. It shows the direct connection between design decisions and the code shipped to production.
+1. **Case studies and methodology**: A transparent look at how I approach product problems. It covers research, systems thinking, token architecture, and interaction design project by project.
+2. **Code literacy**: As I transition into Design Engineering, this is where implementation work lives. It shows the direct connection between design decisions and the code shipped to production.
 
 > This is a living document. As new projects are designed and built, I add them here first before moving them to a dedicated site.
 
