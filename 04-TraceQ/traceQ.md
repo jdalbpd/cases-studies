@@ -1,35 +1,35 @@
 ---
 title: "TraceQ"
-subtitle: "An informational screening tool for autism-associated traits, built with regulated-product rigor"
+subtitle: "An informational screening tool for autism-associated traits, designed with the same state-and-consent discipline as a regulated product"
 role: "Product Designer"
 type: "Concept Project"
 tools: ["Figma", "Figma Make", "Figma Motion", "Claude"]
-tags: ["concept-project", "design-systems", "regulated-ux", "healthtech-adjacent"]
+tags: ["concept-project", "regulated-ux", "design-systems"]
 status: "prototype"
 date: null
-summary: "A responsibly-scoped screening tool built on the validated AQ-10 instrument — framed as an informational starting point, never a diagnosis."
+summary: "A screening tool built on the validated AQ-10 instrument, designed around consent, regulatory boundaries, and careful state handling instead of clinical framing." # drafted, please review
 ---
 
 # TraceQ
 
-**Product Designer · Concept Project**
-
----
-
 ## Context
 
-Self-assessment tools for sensitive traits are often designed like generic quizzes — cheerful, gamified, indifferent to the regulatory and ethical weight of what they're actually measuring. TraceQ started as an exploration of that gap: what does it look like to design an informational screening tool for autism-associated traits with the same rigor you'd apply to a regulated product, without pretending to be a clinical instrument?
+Most of my concept work looks at bureaucratic or fiscal systems in Italy. TraceQ is different on the surface. It is a screening tool for autism-associated traits, not a tax form or a public process. But the design problem is the same one I keep coming back to: a product that lives or dies by how carefully it handles state and sensitive information. Here, the states are questionnaire answers with opposite scoring directions. The sensitive information is a health-adjacent result that must not read as a label or a diagnosis.
 
-TraceQ is built around the AQ-10, a short, validated screening instrument developed by Baron-Cohen et al. at the Autism Research Centre, Cambridge. It's explicitly framed as an informational starting point — never a diagnosis, never a conclusion — designed to support a conversation with a professional, not replace one.
+TraceQ is built on the AQ-10, a short, validated screening instrument developed by Baron-Cohen et al. at the Autism Research Centre, Cambridge. The tool is explicitly informational. It is a starting point for a conversation with a professional, not a conclusion on its own.
 
 ## What I designed
 
-- Compared existing validated instruments (AQ-10, AQ-50, RAADS-R, CAT-Q) and selected the AQ-10 as the right fit for a first iteration: short, validated, and low-risk to prototype responsibly.
-- Designed the full product architecture across 7 screens — landing, GDPR consent, minimal context, questionnaire, result, resources, and data management.
-- Worked through the regulatory boundary explicitly: kept the tool outside EU MDR classification by surfacing only a raw score with no clinical interpretation, and built separate, explicit consent for health-adjacent data under GDPR Art. 9.
-- Rejected a traffic-light color scheme for the questionnaire's response options. The AQ-10 includes reverse-scored items, so a fixed color per option would imply a "correct answer" that shifts inconsistently between questions — the visual system had to follow the instrument's actual scoring logic, not a default pattern.
-- Built a `choice-item` component with idle, hover, focused, and pressed states, kept conceptually separate from Button — it answers a selection pattern, not an action.
-- Prototyped single-select logic using Figma variables bound to variant properties, so choosing one option deselects the others.
+I compared existing validated instruments, AQ-10, AQ-50, RAADS-R, and CAT-Q, before choosing the AQ-10. It is short, validated, and low-risk enough for a first iteration like this one.
+
+From there, I designed the full flow across seven screens: landing, GDPR consent, minimal context, the questionnaire itself, the result, resources, and data management. A few decisions mattered more than the others:
+
+- I kept the tool outside EU MDR classification by showing only a raw score, with no clinical interpretation attached to it.
+- I built separate, explicit consent for health-adjacent data, following GDPR Article 9, instead of folding it into a generic terms checkbox.
+- I stayed aware of the AQ-10's commercial license and what it would require for any use beyond this exploration.
+- I rejected a traffic-light color scheme for the answer options. The AQ-10 has items with reverse-scored direction, so a fixed color per option would mean "correct" on some questions and the opposite on others. The visual system had to follow the instrument's actual scoring logic instead of a common UI convention.
+- I built a `choice-item` component, kept conceptually separate from Button. It answers a selection pattern, not an action, so it needed its own state set: idle, hover, focused, pressed.
+- I prototyped single-select logic using Figma variables tied to each instance's variant properties, so choosing one option deselects the rest.
 
 ## Tools
 
@@ -37,18 +37,18 @@ Figma, Figma Make, Figma Motion, Claude
 
 ## Product Reality
 
-**Business reality.** Unlike a B2B tool with a clear procurement owner, TraceQ has no obvious single buyer — it sits closer to B2C or B2B2C, and the case for each is different. As a standalone consumer tool, the plausible model is free access with a referral path to paid or public professional evaluation, monetized (if at all) through partnership or referral arrangements with clinicians or telehealth providers rather than the individual using it. As a B2B2C component, it could plausibly be licensed to institutions that already sit upstream of a diagnostic pathway — a university student health service, an employer wellness benefit, a telehealth platform's intake flow — where the value is a low-friction, non-clinical first touchpoint that reduces the entry barrier to the institution's own paid or clinical services. Both are hypotheses drawn from adjacent market patterns, not validated by any conversation with a real institution or clinician, and I want to be explicit that no pricing, partnership, or distribution channel has been tested.
+**Business reality.** TraceQ has no business model behind it. It is a concept project, not a product I am pitching or planning to monetize. If it existed as a real product, the honest question would be who pays for it and why. A B2C free-to-use version would need a funding source, maybe a health or wellness platform licensing the flow, or a clinic offering it as a pre-screening step for new patients. I do not have a validated answer here. I am naming the gap instead of filling it with a guess.
 
-**Operational reality.** Three things worth naming that the current design doesn't yet resolve:
+**Operational reality.** A few real-world cases would need answers that the current prototype does not fully cover:
 
-- **A user reacts strongly to the result.** The result screen is deliberately non-diagnostic, and a resources screen exists — but neither is designed around the possibility that a high score lands emotionally hard for someone. The flow assumes a calm reader ready to consider next steps; it doesn't yet account for a user who needs the resources screen to do more than list options.
-- **The result gets used outside its intended purpose.** Nothing currently stops a result from being shared, screenshotted, or presented to a third party — a parent, a school, an employer — as though it were more conclusive than an informational score. The product's framing is correct on the screen itself; it has no way to carry that framing with it once the result leaves the product.
-- **Consent withdrawal after the fact.** GDPR Art. 9 consent is designed at the point of entry, but the data-management screen's actual deletion mechanics — what happens to a result already generated, whether it's retained anywhere for product analytics — aren't specified in enough detail to say the withdrawal path is complete.
+- A user abandons the flow halfway through the questionnaire. The prototype does not define what happens to a partial answer set. In a real product, this would need a clear decision: discard it, or let the user resume later.
+- A user retakes the screening weeks or months apart. Nothing in the current design compares results over time or flags that a second result exists. That comparison logic does not exist yet.
+- A user disagrees with or feels alarmed by the result. The result screen shows a raw score with no clinical language, but it does not yet include a clear next step for someone who reacts badly to what they see. This is arguably the most important operational gap in the whole project.
 
-**What I'd do differently as a real product.** Before adding any feature, I'd validate the distribution question first — whether this lives as a standalone consumer tool or as a licensed component inside an institution's existing pathway, since that choice changes the consent model, the liability posture, and who's responsible for the result-in-distress scenario above. I'd also treat the "result travels beyond the product" gap as a launch blocker rather than a debt item, given the domain — an informational score being mistaken for a diagnosis outside the context that correctly frames it is the failure mode this project was designed specifically to avoid.
+**What I'd do differently as a real product.** With a real team and real funding, I would not try to build this alone as a designer. I would bring in someone with clinical or psychological background early, before any screen design, to review the result-communication flow and the abandonment case. I would also want actual usability testing with people outside my own assumptions before trusting any of these design decisions. Right now, none of this has been tested with real users. It reads as reasoned, not as proven.
 
 ## What I learned
 
-Designing responsibly in a sensitive domain isn't a tone decision — it's a series of specific, checkable constraints: instrument licensing, consent scope, classification boundaries, and scoring logic. The best interface decisions came from understanding the AQ-10 itself, not from styling conventions.
+Designing for a sensitive domain is not really about tone. It comes down to specific, checkable constraints: what the instrument's license allows, how consent is scoped, where the regulatory line sits, and how the scoring actually works. The strongest interface decisions in this project came from understanding the AQ-10 itself, not from following a styling convention.
 
-TraceQ remains in exploration/prototype phase.
+TraceQ is still in exploration and prototype phase. It has not been validated with real users.
