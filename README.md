@@ -1,12 +1,11 @@
 # 🗂️ Case Study Archive
 
 ## Product Design × Systems Thinking × Design Engineering
-### Designing complex products where data, rules, systems and human decisions intersect.
+### Designing complex products where data, rules, systems, and human decisions intersect.
 
-This repository is the source of truth for my design work — a structured archive of case studies, systems thinking, and process documentation from my practice as I expand my practice into Design Engineering. It exists in place of a live portfolio site: each project below is documented in full, with the reasoning, artifacts, and (where relevant) implementation code behind it, so anyone reviewing my work — recruiters, engineers, or fellow designers — can go as deep as they want.
+This repository is the source of truth for my design work. It is a structured archive of case studies, systems thinking, and process documentation from my practice as I move into Design Engineering. It exists in place of a live portfolio site. Each project below is documented in full with the reasoning, artifacts, and implementation code behind it. Recruiters, engineers, or fellow designers can go as deep as they want.
 
-I work at the intersection of **design systems, design engineering, and regulated product domains, complex B2B products**, guided by one operating principle: **systems before screens**. 
-Every project here reflects that — token architecture, component logic, and information structure are treated as the foundation, not an afterthought to visual design.
+I work at the intersection of design systems, design engineering, regulated product domains, and complex B2B products. My work follows one core rule: systems before screens. Token architecture, component logic, and information structure are the foundation of every project here, not an afterthought to visual design.
 
 ---
 
@@ -14,37 +13,37 @@ Every project here reflects that — token architecture, component logic, and in
 
 | # | Projects | Description | Read here |
 |---|---|---|---|
-| 01 | **NEXIA** | *Complex identity / permissions / design systems* | [Read](./01-nexia/nexia.md) |
-| 02 | **Turismo Roma** | *B2B trust / verification / operational systems* | [Read](./02-turismo-roma/turismo-roma.md) |
-| 03 | **Targhino** | *Regulatory product / service design / end-to-end journey* | [Read](./03-Targhino/03-targhino.md) |
+| 01 | **NEXIA** | Identity, permissions, and design systems for complex workflows | [Read](./01-nexia/nexia.md) |
+| 02 | **Turismo Roma** | B2B trust, verification, and operational systems | [Read](./02-turismo-roma/turismo-roma.md) |
+| 03 | **Targhino** | Regulatory product, service design, and end-to-end user journeys | [Read](./03-Targhino/03-targhino.md) |
 
 ## 🕹️ Supporting projects
 | # | Projects | Description | Read here |
 |---|---|---|---|
-| 04 | **TraceQ** | *Regulated / responsible UX* | [Read](./04-TraceQ/traceQ.md) |
-| 05 | **Intérprete Busta Paga** | *Financial data · complex information · trust & clarity* | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
-| 06 | **Soloist** | *AI / conversational product* | [Read](./06-soloist/soloist.md) |
+| 04 | **TraceQ** | Regulated and responsible UX patterns | [Read](./04-TraceQ/traceQ.md) |
+| 05 | **Intérprete Busta Paga** | Financial data, complex information, trust, and clarity | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
+| 06 | **Soloist** | AI interfaces and conversational products | [Read](./06-soloist/soloist.md) |
 
 <br/>
 
-> 💡 Each folder contains its own README with the full case study — problem framing, process, decisions, and outcomes. Some also link out to Behance for visual walkthroughs.
+> Each folder contains its own README with the full case study: problem framing, process, decisions, and outcomes. Some folders also link to Behance for visual walkthroughs.
 
 ---
 
 ## 🪧 About This Repository
 
-This repo serves two purposes:
+This repo serves two main purposes:
 
-1. **Case studies & methodology** — a transparent look at how I approach product design problems: research, systems thinking, token architecture, and interaction design, documented project by project.
-2. **Code literacy** — as I move toward Design Engineering, this is also where implementation work lives, showing the connection between design decisions and the code that ships them.
+1. **Case studies and methodology** — A transparent look at how I approach product problems. It covers research, systems thinking, token architecture, and interaction design project by project.
+2. **Code literacy** — As I transition into Design Engineering, this is where implementation work lives. It shows the direct connection between design decisions and the code shipped to production.
 
-> 💡 This is a living document. As new projects are designed and built, they'll be added here first, before migrating to a dedicated site.
+> This is a living document. As new projects are designed and built, I add them here first before moving them to a dedicated site.
 
 ---
 
 ## 🧢 About Me
 
-**JD (José David Albarrán)** — Senior Product Designer and independent consultant based in Rome, Italy, working across design systems, design engineering, and fintech/digital identity products.
+**JD (José David Albarrán)**. Senior Product Designer and independent consultant based in Rome, Italy. I work across design systems, design engineering, fintech, and digital identity products.
 
 <div align="center">
 <a href="https://linkedin.com/in/jdalbpd/" target="_blank">
@@ -64,5 +63,4 @@ This repo serves two purposes:
 
 This repository is © 2026 José David Albarrán Velásquez ("JD Albarrán"). All rights reserved.
 
-Content, case studies, and code in this repository are shared publicly for portfolio and review purposes only. <br/>
-No reproduction, redistribution, or reuse is authorized without explicit permission. See [LICENSE](./LICENSE) for full terms.
+Content, case studies, and code in this repository are shared publicly for portfolio and review purposes only. No reproduction, redistribution, or reuse is authorized without explicit permission. See [LICENSE](./LICENSE) for full terms.
