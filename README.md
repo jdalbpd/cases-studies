@@ -23,6 +23,7 @@ I work at the intersection of design systems, design engineering, regulated prod
 | 04 | **TraceQ** | Regulated and responsible UX patterns | [Read](./04-TraceQ/traceQ.md) |
 | 05 | **Intérprete Busta Paga** | Financial data, complex information, trust, and clarity | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
 | 06 | **Soloist** | AI interfaces and conversational products | [Read](./06-soloist/soloist.md) |
+| 07 | **Proptech Platform** | Design system ownership and AI-agent rules on a live Next.js product (active engagement) | [Read](./07-proptech-platform/proptech-platform.md) |
 
 <br/>
 
