@@ -32,7 +32,8 @@ summary: A B2C platform, self-directed investigation into how a design system ho
 
 The product underneath it is multi-actor, multi-chain, and multi-state. It includes irreversible actions and compliance surfaces that cannot be faked later.
 
-I built it as a sole contributor, outside any client engagement. My question was specific: what does a design system look like when it works as a contract between design and engineering, not just a component library?
+I built it as a sole contributor, outside any client engagement. My question was specific: <br/>
+> what does a design system look like when it works as a contract between design and engineering, not just a component library?
 
 I chose digital identity as the domain because it forces every hard question at once. Sovereignty. Legibility. Asynchronous on-chain operations. Three actors with partially conflicting agendas: the identity holder, the consumer organization, and the developer integrator. Exception states that are not edge cases, but daily operational reality.
 
@@ -77,6 +78,8 @@ The identity holder gets real control over what they share, rendered in language
 None of those three is hard to deliver in isolation. Delivering all three from the same system, with one coherent design contract underneath, is the design problem.
 
 That is what this case study documents.
+
+[Scroll up](#content)
 
 ---
 
@@ -195,6 +198,8 @@ What I rejected was the deferred-confirmation pattern: let the user complete onb
 Each flow contains additional decisions I have not expanded here: default validity windows justified by service type, derived attributes surfaced as the preferred option when available, intentional confirmation for irreversible actions, question-oriented filtering in the audit panel, credential incorporation separated from initial onboarding, and institutional credential wait-time managed explicitly instead of left ambiguous.
 
 They are documented with the same structure in the extended case study on Behance and rendered in the Figma system. I left them out here because the six decisions above carry the reasoning that matters. The rest reinforce the pattern rather than extend it.
+
+[Scroll up](#content)
 
 ---
 
