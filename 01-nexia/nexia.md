@@ -28,6 +28,12 @@ summary: A B2C platform, self-directed investigation into how a design system ho
 
 ---
 
+# Nexia - prototype
+
+- [Check the repo here!](#context)
+
+---
+
 ## CONTEXT
 
 The product underneath it is multi-actor, multi-chain, and multi-state. It includes irreversible actions and compliance surfaces that cannot be faked later.
@@ -148,31 +154,37 @@ Instead, I chose to build the full contract: both mobile and desktop, all three 
 
 ## Process & decisions
 
-Three flows carry the weight of this product: granting granular permissions, reading the on-chain audit, and onboarding. I chose these three deliberately, and not because they were the hardest to design.
+Three flows carry the weight of this product:
+1. Granting granular permissions: where NEXIA delivers its differential value. If the holder genuinely understands what they are granting, the product wins, but if it reads like another cookie banner, the product fails regardless of backend correctness.
+2. Reading the on-chain audit: is where systemic trust becomes verifiable rather than promised, without it sovereignty is just a slogan, and
+3. Onboarding: is where the user decides whether any of this is worth the initial effort. It's the only flow with the power to shut down the other two.
 
-Granular permissions is where NEXIA delivers its differential value. If the holder genuinely understands what they are granting, the product wins. If it reads like another cookie banner, the product fails, regardless of backend correctness. The audit panel is where systemic trust becomes verifiable rather than promised. Without it, sovereignty is just a slogan. Onboarding is where the user decides whether any of this is worth the initial effort. It's the only flow with the power to shut down the other two.
-
-What follows are two decisions per flow, chosen because they best show how I reasoned: what I decided, why, and what I rejected. The remaining decisions are documented in the Figma system and the extended case study on Behance.
+What follows are two decisions per flow, chosen because they best show how I reasoned: what I decided, why, and what I rejected. The remaining decisions are documented in the Figma system and the extended case study on [Behance](https://www.behance.net/gallery/245703777/Nexia-Decentralized-identity-wallet)
 
 Each decision is written in the same structure: the call I made, the reasoning behind it, and the alternative I deliberately did not choose.
 
 ### Flow 1: Granting granular permissions
 
-**Decision: permission requests are presented in consequence language, not technical language.**
+**Decision: Permission requests are presented in consequence language, not technical language.**
 
-What the consumer organization requests internally is a set of attributes with access parameters: DIDs, schemas, validity windows, attribute types. What the holder sees is a sentence. "Banco Santander wants to verify that you are over 18 and resident of Spain, for the next twelve months." The translation from technical to consequential is the system's responsibility, not the user's.
+What the consumer organization requests internally is a set of attributes with access parameters: DIDs, schemas, validity windows and attribute types. What the holder sees is a sentence: "Banco Santander wants to verify that you are over 18 years old and resident of Spain, for the next twelve months." The translation from technical to consequential is the system's responsibility, not the user's.
 
-The reasoning is that a permission the user does not understand is not a permission. It is recorded consent. Recorded consent protects the organization on paper and erodes the product's trust surface in practice. In an identity product, that trust surface is the product. Users who read what they authorize are more likely to keep trusting the system over time, even if the flow is marginally longer. Genuine comprehension is the defensible end state; recorded consent is the fragile one.
+A permission that the user does not understand is not truly a permission, but rather recorded consent: it is something that protects the organization on paper but, in practice, erodes the product's foundation of trust. In an identity product, that foundation of trust *is* the product. Users who read what they are authorizing are more likely to maintain trust in the system over the long term, even if the process takes slightly longer. Genuine understanding is the solid, defensible end state; recorded consent is the fragile one.
 
-What I rejected was the dual-view pattern: a technical view and a plain-language view with a toggle between them. It is the obvious pattern for this kind of product, and I considered it seriously. I rejected it because a toggle creates a two-class system. The default view becomes the one most users stay in, and any information in the other view becomes invisible. If the technical detail matters, it needs to be accessible without being promoted to a first-class reading mode. The design resolves this by keeping technical detail available as secondary disclosure within the flow, not behind a toggle that competes with the primary view.
+I ruled out the dual-view pattern—featuring one technical view and one in plain language, with a toggle to switch between them—even though I had seriously considered it as the most obvious choice for this type of product. <br/>
+I rejected it because using a toggle creates a two-category system: the default view becomes the one where most users remain, while any information in the other view becomes invisible. If technical details are important, they should be accessible without needing to be elevated to the status of a primary reading mode. <br/>
+Instead, the design addresses this by keeping technical details available as collapsible secondary information within the reading flow, rather than hiding them behind a toggle that competes with the main view.
 
 **Decision: granularity is the default, not an advanced option.**
 
-Every requested attribute appears individually on the grant screen, with the option to expand or reduce scope before confirming. There is no prominent "Accept all" button. There is an "Accept with recommended configuration" button, and tapping it reveals what that configuration implies before committing.
+Each requested attribute appears individually on the permission-granting screen, with the option to expand or narrow the scope before confirming. There is no prominent "Accept All" button; instead, there is an "Accept with recommended settings" button that, when pressed, displays the details of those settings before the action is confirmed.
 
-The reasoning is that in a sovereignty product, the default behavior is the product's ethical position. A design that makes "Accept all" the path of least resistance is a design that has decided the user's sovereignty is worth less than the organization's conversion rate. I was not willing to design a product that contradicted its own thesis in the most-used screen.
+The reason behind is that in a sovereignty product, the default behavior is the product's ethical position. A design that makes "Accept all" the path of least resistance is a design that has decided the user's sovereignty is worth less than the organization's conversion rate. I was not willing to design a product that contradicted its own thesis in the most-used screen.
 
-What I rejected was the progressive-disclosure alternative: show a summary by default, expose granular controls on tap. That pattern works in many consent contexts, and I considered it carefully. I rejected it because it optimizes for a metric NEXIA does not want to optimize for: completion speed. In a permissions flow where actions have on-chain consequences and validity windows that persist for months, a user who moved through the flow faster is not a better outcome. A user who paused, understood, and adjusted scope is the better outcome. The interaction model had to make the slower path the normal path, not the optional one.
+I ruled out the progressive disclosure alternative, which displays a summary by default and reveals detailed controls upon screen interaction. While that pattern works well in many consent-gathering contexts and I gave it serious consideration, I ultimately rejected it.
+I did so because it prioritizes a metric NEXIA does not aim to optimize: completion speed.
+In a permissions flow where actions have on-chain consequences and validity periods spanning months, a user completing the process faster does not equate to a better outcome. The ideal result is one where the user pauses, understands the situation, and adjusts the scope. The interaction model needed to make the more deliberate path the standard, rather than a secondary option.
+<br/>
 
 ### Flow 2: Audit panel and on-chain traceability
 
@@ -180,17 +192,22 @@ What I rejected was the progressive-disclosure alternative: show a summary by de
 
 Layer one is a human-language summary. "On March 4th, Banco Santander verified that you are over 18. Authorized." No hashes, no network names, no technical IDs. Layer two is contextual detail: which specific attributes were queried, which credential version was used, and whether verification succeeded or failed, and why. Layer three is the technical record: transaction hash, chain, block, verification ID. It's exportable and independently verifiable.
 
-The reasoning is that an audit log serves three actors simultaneously: the holder who wants to see what happened with their data, the legal or compliance reviewer who needs to reconstruct a specific event, and the developer or external auditor who needs to verify the event against the chain. These are not three different products. They are the same events read at three different depths. Forking the system into separate tools would have fragmented the source of truth; flattening it into a single view would have produced either technical noise that loses the holder or oversimplified summaries that lose the auditor.
+The reasoning is that an audit log serves three actors simultaneously: the holder who wants to see what happened with their data, the legal or compliance reviewer who needs to reconstruct a specific event, and the developer or external auditor who needs to verify the event against the chain. These are not three different products but they are the same events read at three different depths. Forking the system into separate tools would have fragmented the source of truth; flattening it into a single view would have produced either technical noise that loses the holder or oversimplified summaries that lose the auditor.
 
-What I rejected was the role-based view: a holder view, a compliance view, a developer view, switched by account type. It is the pattern most enterprise audit tools use, and it is wrong for this product. Role-based views assume the actor is the primary axis of variation. In NEXIA, the primary axis is depth of inquiry. A holder may occasionally need to read at layer three (exporting a record for a legal process). A compliance officer may start at layer one to scan volume before drilling into layer three on a specific event. Binding the reading depth to the actor's role would have forced all three into workflows that did not match how they actually use the information.
+What I ruled out was the role-based approach—specific views for the account holder, the compliance officer, and the developer, toggled according to the account type.
+While this is the pattern used by most enterprise auditing tools, it is not suitable for this product because role-based views are premised on the idea that the actor is the primary variable; in NEXIA, however, the primary variable is the depth of analysis. For instance, an account holder might occasionally need to access third-level information (such as when exporting a record for legal proceedings), whereas a compliance officer might start at the first level to assess overall volume before drilling down to the third level to examine a specific event.
+Linking the depth of inquiry to the user's role would have forced all three profiles to follow workflows that did not align with how they actually use the information.
 
 **Decision: denied events are as visible as authorized ones.**
 
 Every denied access attempt (because the permission did not exist, was expired, or the requested attribute did not match the presented credential) shows up in the main audit view with the same visual weight as an authorized event. Denied events are filterable, exportable, and countable.
 
-The reasoning is that an audit log that only shows successful accesses is not an audit log. It is an activity log, and activity logs are what organizations show users to create the appearance of transparency without exposing the pattern of attempts the user would actually want to see. A high volume of denied attempts from a specific organization is one of the strongest signals a user can have that something is wrong: a misconfigured integration on the organization's side, a service probing beyond its authorization scope, or an active security event. Making denied events invisible protects the organization from scrutiny; making them visible protects the user.
+The reasoning is that an audit log showing only successful access attempts is not truly an audit log.
+Activity logs are what organizations show users to create an appearance of transparency, without revealing the pattern of attempts the user would actually want to see. A high volume of denied attempts originating from a specific organization is one of the clearest indicators to the user that something is amiss—whether it be a misconfigured integration, a service probing beyond its authorized scope, or an ongoing security incident.
+Hiding denied events shields the organization from scrutiny, whereas making them visible protects the user.
 
-What I rejected was the "attention-first" pattern: showing only denied events when they cross a threshold, hiding them under a counter otherwise. It is a defensible compromise, and I considered it because it reduces cognitive load in the default view. I rejected it because thresholds create a gray zone. Low-volume denied patterns go unnoticed in that zone, and they are often the most informative ones. A single denied attempt from an organization the user has no relationship with is a signal that matters more than fifty denied attempts from an organization with a misconfigured API. The design treats all denied events as first-class and uses filtering, not hiding, to manage volume.
+I ruled out the "attention-prioritization" pattern—which displays rejected events only when they exceed a certain threshold and otherwise hides them behind a counter. While this is a defensible compromise that I considered because it reduces cognitive load in the default view, I ultimately rejected it because thresholds create a "gray zone."
+In that zone, low-volume rejection patterns—which often provide the most valuable insights—can go unnoticed. A single rejected attempt from an organization with which the user has no relationship is a more significant signal than fifty rejected attempts from an organization with a misconfigured API. The design treats all rejected events as first-class items and uses filtering, rather than hiding, to manage volume.
 
 ### Flow 3: Onboarding and credential incorporation
 
@@ -212,9 +229,16 @@ What I rejected was the deferred-confirmation pattern: let the user complete onb
 
 ### A note on the remaining decisions
 
-Each flow contains additional decisions I have not expanded here: default validity windows justified by service type, derived attributes surfaced as the preferred option when available, intentional confirmation for irreversible actions, question-oriented filtering in the audit panel, credential incorporation separated from initial onboarding, and institutional credential wait-time managed explicitly instead of left ambiguous.
+Each flow contains additional decisions I have not expanded here: 
+- Default validity windows justified by service type
+- Derived attributes surfaced as the preferred option when available
+- Intentional confirmation for irreversible actions 
+- Question-oriented filtering in the audit panel
+- Credential incorporation separated from initial onboarding, and 
+- Institutional credential wait-time managed explicitly instead of left ambiguous.
 
-They are documented with the same structure in the extended case study on Behance and rendered in the Figma system. I left them out here because the six decisions above carry the reasoning that matters. The rest reinforce the pattern rather than extend it.
+They are documented with the same structure in the extended case study on [Behance](https://www.behance.net/gallery/245703777/Nexia-Decentralized-identity-wallet) and rendered in the Figma system. <br/>
+I left them out here because the six decisions above carry the reasoning that matters. The rest reinforce the pattern rather than extend it.
 
 [Scroll up](#content)
 
@@ -226,7 +250,8 @@ Everything listed here exists. Nothing below describes work that is planned, ske
 
 ### Strategic diagnosis
 
-A written diagnosis that reframes the problem from fragmentation to legibility. It maps the structural ceilings of the three dominant solution archetypes (password managers, corporate SSO, crypto wallets with identity layers). It locates NEXIA's bet at the intersection the archetypes leave empty. The diagnosis also documents the prioritization rationale: why granular permissions comes before identity management, why on-chain audit comes before dApp interoperability. This is an explicit strategic argument, not a roadmap assumption.
+A written diagnosis that reframes the problem from fragmentation to legibility. It maps the structural ceilings of the three dominant solution archetypes (password managers, corporate SSO, crypto wallets with identity layers). <br/> 
+It locates NEXIA's bet at the intersection the archetypes leave empty. The diagnosis also documents the prioritization rationale: why granular permissions comes before identity management and why on-chain audit comes before app interoperability. This is an explicit strategic argument, not a roadmap assumption.
 
 ### Multi-actor tension map
 
