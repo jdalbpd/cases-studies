@@ -34,382 +34,212 @@ summary: A B2C platform, self-directed investigation into how a design system ho
 
 ---
 
-## CONTEXT
+## Context
 
-The product underneath it is multi-actor, multi-chain, and multi-state. It includes irreversible actions and compliance surfaces that cannot be faked later.
+NEXIA is a self-directed investigation into how a design system holds up when the product is truly complex. It is multi-actor, multi-chain, and multi-state. It has irreversible actions and compliance needs that cannot be added later.
 
-I built it as a sole contributor, outside any client engagement. My question was specific: <br/>
-> what does a design system look like when it works as a contract between design and engineering, not just a component library?
+I built it alone, outside any client work, to test one question. What changes when a design system works as a contract between design and engineering, not as a component library?
 
-I chose digital identity as the domain because it forces every hard question at once. Sovereignty. Legibility. Asynchronous on-chain operations. Three actors with partially conflicting agendas: the identity holder, the consumer organization, and the developer integrator. Exception states that are not edge cases, but daily operational reality.
+Digital identity forces every hard question at once. Sovereignty and legibility. Asynchronous on-chain operations. Three actors with conflicting agendas: the identity holder, the consumer organization, and the developer integrator. Exception states that are daily reality, not edge cases.
 
-The output is not a visual concept, it's a full system specification that includes a strategic diagnosis, a permission data model, and an interaction model that separates synchronous from asynchronous operations. <br/> 
-It also includes a semantic token architecture, a ten-state component contract for the core Permission Card, and three documented priority flows with explicit decision rationale. <br/>
-A three-layer audit panel serves end users and legal auditors through the same system. A governance model defines what changes without review and what does not.
-
-The case study documents the reasoning behind each decision. Where I made trade-offs, I say what I traded. Where I left debt, I named it and scheduled it.
-
----
+The output is a full system specification, not a visual concept. It includes a strategic diagnosis, a permission data model, a synchrony model, a token architecture, and a ten-state Permission Card contract. It also covers three priority flows, a three-layer audit panel, and a governance model. Eleven Figma frames render the contract. I document each decision with the alternative I rejected, and I name the debt I left.
 
 ## Problem statement
 
 ### The real problem
 
-> Digital identity is usually framed as a fragmentation problem: 
-Too many passwords, too many accounts, too many silos. That framing is accurate but shallow. It describes a symptom and calls it the disease. <br/> 
-> The structural problem is not fragmentation. It is that users cannot see the risk they are carrying.
+Digital identity is usually framed as fragmentation: too many passwords, accounts, and silos. That is accurate but shallow. The real problem is that users cannot see the risk they carry.
 
-Every time someone clicks "Sign in with," accepts a cookie banner, or hands over a scanned ID to onboard into a service, they transfer consequences they cannot inspect. What data was actually shared?, For how long?, With what scope?, Under what conditions it gets revoked?, or What happens if it gets revoked at all?. <br/> 
-The mechanism that should answer those questions does not exist at the user's layer. It lives in the backend of whoever is verifying them, and the user has to trust that backend with no way to check it.
+Each time someone clicks "Sign in with," accepts a cookie banner, or sends a scanned ID, they accept consequences they cannot inspect. What was shared, for how long, with what scope, and when it gets revoked. The answers live in the verifier's backend, and the user has no way to audit it.
 
-The three dominant solution archetypes each hit a structural ceiling before solving this:
+Three solution archetypes hit a ceiling. Password managers custody secrets, not verifiable attributes, and the provider stays a single point of failure. Corporate SSO ends when the contract ends, so the user never owned the identity. Crypto wallets get sovereignty right but expose protocol complexity, which limits adoption to technical users.
 
-1. Password managers solve authentication but not identity, they custody secrets, not verifiable attributes. The provider itself stays a single point of failure. 
-2. Corporate SSO solves identity inside an organizational perimeter, but the moment the contractual relationship ends, so does the identity and the user never owned it. 
-3. Crypto wallets with identity layers get sovereignty right, but they expose protocol complexity to the end user. <br/> 
-That complexity limits adoption to a technical audience.
+The gap is clear. Users need Web3 sovereignty without its complexity. Organizations need a verification surface that does not force them to store sensitive data.
 
-> The gap sits at the intersection of two needs. A product needs the Web3 sovereignty model, but without exposing its complexity. Organizations need a reliable verification surface, but without having to custody sensitive data.
+### Why this is a design problem, not a technical one
 
-### Why this becomes a design problem, not a technical one?
+The technical pieces already exist: decentralized identifiers, verifiable credentials, on-chain permission registries, derived attributes. The bottleneck is legibility. A permission means nothing if the person does not understand it. An audit log means nothing if they cannot tell authorized from denied. A recovery flow means nothing if nobody completes it.
 
-The technical ingredients to solve this already exist: decentralized identifiers, verifiable credentials, on-chain permission registries, derived attributes with zero-knowledge properties. <br/> The protocol layer is not the bottleneck.
+So the product is a legibility layer over a sovereignty protocol. The design system decides whether that legibility survives real states: pending transactions, expired permissions, unverifiable credentials, congested networks, denied access.
 
-> The bottleneck is legibility.
+### What NEXIA is betting on
 
-A permission is useless if the person granting it does not understand what they are granting, an audit log is useless if the person reading it cannot tell an authorized access from a denied one, a recovery flow is useless if it is technically sound but nobody completes it. The thing is that sovereignty in a product like this, is not a backend property but it is a property that has to be rendered in language the user uses, in states the user can distinguish, in default behaviors that do the right thing before the user has to ask.
+Three things can be true at once. The holder controls what they share, in plain language. The organization gets instant verification and an auditable trail, without custody of the data. The developer gets predictable APIs without managing blockchain edge cases.
 
-This reframes the problem, the product is not "a blockchain-based identity wallet." but is a **legibility layer over a sovereignty protocol**. <br/>
-The design system is the mechanism that decides whether that legibility survives contact with real operational states: pending transactions, expired permissions, unverifiable credentials, congested networks, denied access attempts and delegated recoveries. At this point
-
-### What NEXIA is betting on?
-
-NEXIA's bet is that three things can be true at the same time:
-
-1. The identity holder gets real control over what they share, rendered in language they actually use. 
-2. The consumer organization gets an instant verification surface with an auditable trail. It can present that trail to a regulator without custodying the underlying data, and
-3. The developer gets predictable APIs and abstractions that let them build without managing blockchain edge cases.
-
-None of those three is hard to deliver in isolation. <br/>
-Delivering all three from the same system, with one coherent design contract underneath, is the design problem.
-
-That is what this case study documents.
-
-[Scroll up](#content)
-
----
+Each one is easy alone. Delivering all three from one design contract is the design problem.
 
 ## Constraints
 
-This was a self-directed project. There was no client brief, no timeline pressure, no engineering team pushing back on scope and no budget ceiling. The conventional constraints of a commercial engagement did not apply, and I will not pretend they did.
-
-What did apply were the structural constraints imposed by the domain itself. Digital identity on a sovereign protocol is not a greenfield, it is a space with hard edges and the design has to respect those edges from the first decision, or it will collaps under its own assumptions later.
+This was self-directed. There was no client brief, no deadline, no engineering pushback, and no budget ceiling. The constraints came from the domain itself.
 
 ### Asynchrony is not optional
 
-On-chain operations are not instantaneous. A permission grant, a revocation, a credential registration: each one involves network confirmation times that range from fifteen seconds to five minutes under normal conditions, and this range could be longer under congestion in real time. This is not a loading state to be designed around, it is the physics of the medium.
+On-chain writes take from fifteen seconds to five minutes, and longer under congestion. This is not a loading state to design around. It is how the medium works. I modeled every action as synchronous (off-chain reads) or asynchronous (on-chain writes), and I never block navigation while an action is in flight.
 
-Any design that treats asynchronous operations as a special case rather than the default will result in an interface that fails when faced with real-world network conditions. This limitation compelled me to make a specific architectural decision from the outset: modeling every action as either synchronous (off-chain reads) or asynchronous (on-chain writes), exposing intermediate states as normal operational states, and never blocking navigation while an action is in progress. <br/>
-All subsequent decisions regarding components stem from this approach.
+### Irreversibility must be visible before the action
 
-### Irreversibility has to be communicated before the action, not after
+Revoking a permission can be undone. Some on-chain records cannot. If the system treats both the same way, users learn to ignore warnings. So the token layer has two separate tokens: color.action.destructive and color.action.irreversible.
 
-Some actions in NEXIA are reversible, as revoking a permission can be followed by re-granting it and some others are not, as certain on-chain records cannot be rewritten. <br/> 
-A design system that does not distinguish between those two categories at the token level before components, before flows, will produce interfaces that treat all destructive actions the same way and users will learn to ignore the warnings.
-<br/> 
+### Compliance cannot be added later
 
-This is why the semantic color system has two separate tokens: `color.action.destructive` and `color.action.irreversible`. That distinction is not cosmetic it is a constraint the domain imposes, rendered as a primitive.
+GDPR's right to erasure does not fit a system that stores personal data on an immutable ledger. Permission hashes and audit events live on-chain. The actual attributes stay off-chain, under holder control. This split shaped the data model, the audit panel, and the governance layer.
 
-### Compliance cannot be retrofitted
+### Three actors, one system
 
-GDPR's right to erasure is incompatible with a system where identity attributes live fully on-chain. An architecture that stores complete personal data on an immutable ledger cannot be made compliant later, it has to be structured from the start to separate what lives on-chain (permission hashes, audit events) from what lives off-chain (the actual attributes under holder control).
+All three actors had to use the same design system. No forked products, no separate visual languages, no separate permission models. The same components had to work for a holder on a mobile wallet and for a compliance officer scanning twelve hundred verifications a day on desktop.
 
-This is a structural constraint, not a feature. It shaped the permissions data model, the audit panel architecture, and the governance layer; consequently, designing a system that was compliant with regulations from the ground up was a non-negotiable requirement.
+### No validation with real users
 
-### Three actors, one system:
+This is the most important constraint to name. I had no users to test with. Every decision rests on reasoning from the domain, adjacent products, and published research on consent flows. None of it has been tested against real usage. The debt roadmap exists because of this.
 
-The product serves three actors with partially conflicting agendas: 
-1. The identity holder
-2. The consumer organization, and 
-3. The developer integrator. <br/>
-The constraint was that all three had to be served from the same design system: not three forked products, not three visual languages, not three permission models.
+### Scope I chose not to reduce
 
-This ruled out certain shortcuts, as it was not possible to design the holder's experience first and subsequently adapt the organization's compliance perspective; the data model had to function for both scenarios from the outset. The component's contract had to enable a consistent display for both a user with a mobile wallet and a compliance officer processing 1,200 checks daily via a desktop dashboard. The actor conflict matrix documented in the case study exists precisely because that constraint necessitated it.
-
-### No validation loop with real users
-
-This is the most important constraint to name honestly. I had no users to test with, no compliance officers reviewing the audit panel, no developers stress-testing the API abstractions and no holders trying to recover from a lost device.
-
-That constraint has consequences I want to be explicit about: every design decision in this project is defensible on the basis of reasoning: from first principles of the domain, from established patterns in adjacent products, from documented usability research on consent flows and asynchronous interfaces. None of it is validated by contact with real usage. The known design debt roadmap at the end of this case study exists precisely because I treated this constraint seriously rather than pretending it was not there.
-
-### What I chose not to constrain
-
-One decision I want to name: I did not artificially restrict scope to make the project easier to complete. I could have designed only the holder's mobile experience, the onboarding flow, or even the token architecture and that would have been faster and even easier to present.
-
-Instead, I chose to build the full contract: both mobile and desktop, all three actors, the governance layer, the debt roadmap. The point of the exercise was to see whether a design system could hold up across that surface. Narrowing the scope would have defeated the purpose.
-
-[Scroll up](#content)
+I could have designed only the holder's mobile flow. That would have been faster to present. I built the full contract instead: mobile and desktop, three actors, governance, and the debt roadmap. The goal was to see whether one system could hold across all of it.
 
 ---
 
 ## Process & decisions
 
-Three flows carry the weight of this product:
-1. Granting granular permissions: where NEXIA delivers its differential value. If the holder genuinely understands what they are granting, the product wins, but if it reads like another cookie banner, the product fails regardless of backend correctness.
-2. Reading the on-chain audit: is where systemic trust becomes verifiable rather than promised, without it sovereignty is just a slogan, and
-3. Onboarding: is where the user decides whether any of this is worth the initial effort. It's the only flow with the power to shut down the other two.
+Three flows carry the product: granting permissions, reading the audit, and onboarding. Permissions is where NEXIA creates its value. The audit is where trust becomes checkable. Onboarding decides whether a user gets to the other two at all.
 
-What follows are two decisions per flow, chosen because they best show how I reasoned: what I decided, why, and what I rejected. The remaining decisions are documented in the Figma system and the extended case study on [Behance](https://www.behance.net/gallery/245703777/Nexia-Decentralized-identity-wallet)
-
-Each decision is written in the same structure: the call I made, the reasoning behind it, and the alternative I deliberately did not choose.
+Below are two decisions per flow. Each shows what I decided, why, and what I rejected. The rest are documented in Figma and the extended version on Behance.
 
 ### Flow 1: Granting granular permissions
+Permission requests use consequence language, not technical language
 
-**Decision: Permission requests are presented in consequence language, not technical language.**
+The holder does not see DIDs and schemas. They see a sentence: "Banco Santander wants to verify that you are over 18 and resident of Spain, for the next twelve months." The system does the translation, not the user.
 
-What the consumer organization requests internally is a set of attributes with access parameters: DIDs, schemas, validity windows and attribute types. What the holder sees is a sentence: "Banco Santander wants to verify that you are over 18 years old and resident of Spain, for the next twelve months." The translation from technical to consequential is the system's responsibility, not the user's.
+**Why:** a permission the user does not understand is only recorded consent. It protects the organization on paper and weakens trust in practice.
 
-A permission that the user does not understand is not truly a permission, but rather recorded consent: it is something that protects the organization on paper but, in practice, erodes the product's foundation of trust. In an identity product, that foundation of trust *is* the product. Users who read what they are authorizing are more likely to maintain trust in the system over the long term, even if the process takes slightly longer. Genuine understanding is the solid, defensible end state; recorded consent is the fragile one.
+**Rejected:** a technical view and a plain view with a toggle. A toggle creates two classes of users, and the technical detail becomes invisible. I kept it as secondary disclosure inside the flow.
 
-I ruled out the dual-view pattern—featuring one technical view and one in plain language, with a toggle to switch between them—even though I had seriously considered it as the most obvious choice for this type of product. <br/>
-I rejected it because using a toggle creates a two-category system: the default view becomes the one where most users remain, while any information in the other view becomes invisible. If technical details are important, they should be accessible without needing to be elevated to the status of a primary reading mode. <br/>
-Instead, the design addresses this by keeping technical details available as collapsible secondary information within the reading flow, rather than hiding them behind a toggle that competes with the main view.
+### Granularity is the default
 
-**Decision: granularity is the default, not an advanced option.**
+Every requested attribute appears on its own. There is no prominent "Accept all." The "Accept with recommended configuration" button shows what it implies before the user commits.
 
-Each requested attribute appears individually on the permission-granting screen, with the option to expand or narrow the scope before confirming. There is no prominent "Accept All" button; instead, there is an "Accept with recommended settings" button that, when pressed, displays the details of those settings before the action is confirmed.
+**Why:** in a sovereignty product, the default is the ethical position. "Accept all" as the easy path would contradict the thesis on the most-used screen.
 
-The reason behind is that in a sovereignty product, the default behavior is the product's ethical position. A design that makes "Accept all" the path of least resistance is a design that has decided the user's sovereignty is worth less than the organization's conversion rate. I was not willing to design a product that contradicted its own thesis in the most-used screen.
-
-I ruled out the progressive disclosure alternative, which displays a summary by default and reveals detailed controls upon screen interaction. While that pattern works well in many consent-gathering contexts and I gave it serious consideration, I ultimately rejected it.
-I did so because it prioritizes a metric NEXIA does not aim to optimize: completion speed.
-In a permissions flow where actions have on-chain consequences and validity periods spanning months, a user completing the process faster does not equate to a better outcome. The ideal result is one where the user pauses, understands the situation, and adjusts the scope. The interaction model needed to make the more deliberate path the standard, rather than a secondary option.
-<br/>
+**Rejected:** a summary first, with granular controls on tap. It optimizes for completion speed. Here, a user who pauses and adjusts scope is the better outcome.
 
 ### Flow 2: Audit panel and on-chain traceability
 
-**Decision: the audit panel has three reading layers with explicit navigation between them.**
+#### The audit panel has three reading layers
 
-Layer one is a human-language summary. "On March 4th, Banco Santander verified that you are over 18. Authorized." No hashes, no network names, no technical IDs. Layer two is contextual detail: which specific attributes were queried, which credential version was used, and whether verification succeeded or failed, and why. Layer three is the technical record: transaction hash, chain, block, verification ID. It's exportable and independently verifiable.
+Layer one is a plain summary: "On March 4th, Banco Santander verified that you are over 18. Authorized." Layer two shows which attributes were queried, which credential version was used, and why a check failed. Layer three is the technical record: transaction hash, chain, block, and verification ID. It can be exported and verified independently.
 
-The reasoning is that an audit log serves three actors simultaneously: the holder who wants to see what happened with their data, the legal or compliance reviewer who needs to reconstruct a specific event, and the developer or external auditor who needs to verify the event against the chain. These are not three different products but they are the same events read at three different depths. Forking the system into separate tools would have fragmented the source of truth; flattening it into a single view would have produced either technical noise that loses the holder or oversimplified summaries that lose the auditor.
+**Why:** holders, compliance reviewers, and auditors read the same events at different depths. Separate tools would split the source of truth.
 
-What I ruled out was the role-based approach—specific views for the account holder, the compliance officer, and the developer, toggled according to the account type.
-While this is the pattern used by most enterprise auditing tools, it is not suitable for this product because role-based views are premised on the idea that the actor is the primary variable; in NEXIA, however, the primary variable is the depth of analysis. For instance, an account holder might occasionally need to access third-level information (such as when exporting a record for legal proceedings), whereas a compliance officer might start at the first level to assess overall volume before drilling down to the third level to examine a specific event.
-Linking the depth of inquiry to the user's role would have forced all three profiles to follow workflows that did not align with how they actually use the information.
+**Rejected:** role-based views. The real axis is depth of inquiry, not role. A holder may need layer three for a legal process. A compliance officer may start at layer one to scan volume.
 
-**Decision: denied events are as visible as authorized ones.**
+#### Denied events are as visible as authorized ones
 
-Every denied access attempt (because the permission did not exist, was expired, or the requested attribute did not match the presented credential) shows up in the main audit view with the same visual weight as an authorized event. Denied events are filterable, exportable, and countable.
+Every denied attempt appears in the main view with the same weight as an authorized one. Denied events can be filtered, exported, and counted.
 
-The reasoning is that an audit log showing only successful access attempts is not truly an audit log.
-Activity logs are what organizations show users to create an appearance of transparency, without revealing the pattern of attempts the user would actually want to see. A high volume of denied attempts originating from a specific organization is one of the clearest indicators to the user that something is amiss—whether it be a misconfigured integration, a service probing beyond its authorized scope, or an ongoing security incident.
-Hiding denied events shields the organization from scrutiny, whereas making them visible protects the user.
+**Why:** a log of successes only is an activity log, not an audit. A pattern of denied attempts is often the strongest warning a user can get.
 
-I ruled out the "attention-prioritization" pattern—which displays rejected events only when they exceed a certain threshold and otherwise hides them behind a counter. While this is a defensible compromise that I considered because it reduces cognitive load in the default view, I ultimately rejected it because thresholds create a "gray zone."
-In that zone, low-volume rejection patterns—which often provide the most valuable insights—can go unnoticed. A single rejected attempt from an organization with which the user has no relationship is a more significant signal than fifty rejected attempts from an organization with a misconfigured API. The design treats all rejected events as first-class items and uses filtering, rather than hiding, to manage volume.
+**Rejected:** showing denied events only above a threshold. Thresholds hide low-volume patterns. One denied attempt from an unknown organization can matter more than fifty from a misconfigured API.
 
 ### Flow 3: Onboarding and credential incorporation
 
-**Decision: onboarding is organized around a question, not around features.**
+#### Onboarding starts with a question
 
-The first screen after identity creation asks "What would you like to do first?" The options are real-use scenarios, not feature descriptions. "Connect with a service that has already requested it." "Store my identity documents securely." "See which apps have access to my information." Each option triggers a contextual flow that surfaces only the capabilities relevant to that goal.
+The first screen asks "What would you like to do first?" The options are real tasks: connect with a service that asked for verification, store identity documents, or see which apps have access.
 
-The reasoning is that users arrive at a sovereignty product with one of two mental states: an external trigger (an organization requested verification) or a latent need (they want more control over their data). In both cases, they have a specific objective. A feature tour optimizes for the designer's model of the product: the things the designer wants the user to know exist. A goal-driven entry optimizes for the user's reason for being there. Time-to-first-perceived-value is the metric that matters at this stage, and feature tours do not reduce it; they delay it.
+**Why:** users arrive with a goal, either an organization's request or a need for control. A goal-driven start shortens the time to first value.
 
-What I rejected was the guided tour with skip option. It is the lowest-risk pattern and the one most consumer apps still default to. I rejected it because "skip" is the feature tour's admission that it was not worth watching. If the tour is valuable, it should not be skippable. If it is skippable, it should not exist. Neither version is defensible. A goal-driven entry has no skip button because there is nothing to skip. The user is already doing the thing they came to do.
+**Rejected:** a guided tour with a skip option. If the tour is worth watching, it should not be skippable. If it can be skipped, it should not exist.
 
-**Decision: recovery is proven before onboarding completes.**
+#### Recovery is proven before onboarding ends
 
-After the user generates their identity and writes down their recovery phrase, they complete a confirmation step: entering three specific words from the phrase in the correct order. If they cannot, the flow explains the error and offers to re-reveal the phrase. Onboarding is not considered complete until the confirmation succeeds.
+After writing down the recovery phrase, the user enters three specific words in order. Onboarding is not complete until this succeeds.
 
-The reasoning is that in a sovereign identity system, recovery is the product's most consequential failure mode. If the user loses their device and cannot recover their identity, no customer support process can restore it. That is what sovereignty means. A recovery flow that the user did not actually complete is worse than no recovery flow at all, because it creates the illusion of a safety net where none exists. The confirmation step converts recovery from a promise the system makes to the user into evidence the user makes for themselves. That shift is structural, not cosmetic.
+**Why:** if a user loses their device and cannot recover, no support team can fix it. An untested recovery flow gives a false sense of safety.
 
-What I rejected was the deferred-confirmation pattern: let the user complete onboarding, then prompt them to verify recovery within the next seven days. It is the pattern most products use, because it reduces onboarding abandonment, and onboarding abandonment is the easiest metric to show a growth team. I rejected it because deferred confirmation almost never gets completed. Users dismiss the prompt, forget, and start using the product with unverified recovery. That's exactly the scenario the flow was supposed to prevent. The friction of verifying recovery up front is the price of the product actually working when it matters. Deferring that friction moves the cost from onboarding to the worst possible moment: the moment recovery is needed.
+**Rejected:** confirming recovery within seven days after onboarding. Deferred confirmation almost never happens. The cost then moves to the worst moment, when recovery is needed.
 
-### A note on the remaining decisions
+#### The remaining decisions
 
-Each flow contains additional decisions I have not expanded here: 
-- Default validity windows justified by service type
-- Derived attributes surfaced as the preferred option when available
-- Intentional confirmation for irreversible actions 
-- Question-oriented filtering in the audit panel
-- Credential incorporation separated from initial onboarding, and 
-- Institutional credential wait-time managed explicitly instead of left ambiguous.
-
-They are documented with the same structure in the extended case study on [Behance](https://www.behance.net/gallery/245703777/Nexia-Decentralized-identity-wallet) and rendered in the Figma system. <br/>
-I left them out here because the six decisions above carry the reasoning that matters. The rest reinforce the pattern rather than extend it.
-
-[Scroll up](#content)
-
----
+Each flow holds more decisions that I did not expand here: default validity windows by service type, derived attributes as the preferred option, confirmation for irreversible actions, question-based audit filters, credentials added after onboarding, and managed wait time for institutional credentials. They follow the same pattern as the six above.
 
 ## Artifacts
 
-Everything listed here exists. Nothing below describes work that is planned, sketched, or partial.
+Everything listed here exists.
 
-### Strategic diagnosis
-
-A written diagnosis that reframes the problem from fragmentation to legibility. It maps the structural ceilings of the three dominant solution archetypes (password managers, corporate SSO, crypto wallets with identity layers). <br/> 
-It locates NEXIA's bet at the intersection the archetypes leave empty. The diagnosis also documents the prioritization rationale: why granular permissions comes before identity management and why on-chain audit comes before app interoperability. This is an explicit strategic argument, not a roadmap assumption.
-
-### Multi-actor tension map
-
-A three-actor model (identity holder, consumer organization, developer integrator) with a documented conflict matrix. The matrix captures five structural tensions: sovereignty versus convenience, trust versus verifiability, privacy versus compliance, simplicity versus granularity, full sovereignty versus recovery from access loss. It states the adopted design resolution for each. This artifact does what most persona work does not: it treats the actors as a system with internal conflict, not as three separate targets to optimize for in isolation.
-
-### Information architecture and interaction model
-
-A three-space model of the wallet (identity space, permissions space, audit space), with a full permission data model (thirteen fields, each with defined types and state taxonomies) that functions as the design contract between UI components and backend records. Alongside it, a synchrony model that classifies every user operation as synchronous, asynchronous, or semi-synchronous, with expected duration and required intermediate state. This model is the decision upstream of every component that renders a permission, a credential, or a transaction.
-
-### Semantic token architecture
-
-A token system organized in three collections: primitives (raw values), semantics (meaning-bound variables), and component tokens (scoped applications). Eleven semantic tokens across three categories: permission states (active, expiring, expired, revoked, pending, suspended), credential states (verified, self-issued, unverifiable), and action categories (primary, destructive, irreversible). The deliberate distinction between `color.action.destructive` and `color.action.irreversible` is encoded at the token layer because the domain requires it, not because the visual design called for it.
-
-### Component contract: Permission Card
-
-A ten-state specification for the core component of the system: active, expiring, expired, revoked, pending, suspended, loading, empty, error, disabled. Each state defines what it communicates, what actions are available within it, and what visually distinguishes it from adjacent states. The contract also defines the rules that govern state transitions. No state may render interactive elements until the system has confirmed the permission is effectively in that state. That rule is a contract between design and engineering, not a styling decision.
-
-### Component contract: Attribute Disclosure
-
-A five-state specification for how attributes are shared within a permission: full, derived, masked, pending verification, unverifiable. The component renders the distinction between what is shared and what is protected by being shared in that form. Derived disclosure, sharing "over 18" without revealing birth date, is the highest-value capability of the product. It's designed as the first-class variant, not an advanced option.
-
-### Component contract: Transaction Status
-
-A six-state specification for asynchronous on-chain operations: initiating, broadcasting, confirming, confirmed, failed, cancelled. The component is non-blocking by contract: it never prevents the user from navigating away, it persists across screens as a minimized notification, and it communicates progress through both visual and text-equivalent channels for screen readers.
-
-### Accessibility acceptance criteria
-
-Accessibility baseline defined as acceptance criteria for every component, not as a post-hoc audit layer. WCAG 2.1 Level AA contrast ratios, minimum touch targets, screen-reader announceability for permission states, text equivalents for all progress indicators, prefers-reduced-motion respected across animations, and a rule that no state badge may communicate through color alone. Each criterion is listed per component in the system documentation.
-
-### Three priority flows: Figma
-
-Eleven frames across mobile and desktop covering the three priority flows. Flow 1 (granular permissions) includes entry from wallet home, incoming request, scope configuration, duration customization, and final confirmation. Flow 2 (audit panel) includes the activity list, filters oriented around user questions, export options in both PDF and JSON, and detail views across the three reading layers. Flow 3 (onboarding) includes identity creation, recovery phrase generation, recovery confirmation with verification test, and the goal-driven entry point after completion.
-
-### Organization-side architecture
-
-A separate architecture for the consumer organization, rendered as a compliance operations dashboard rather than a mobile wallet. Same design tokens. Same semantic colors. Same permission data model. Completely different information architecture, because the organization does not manage one identity. It manages volume, compliance posture, and evidence. The dashboard reuses the token system and component contract without forking the design system. That's the test of whether the system actually works as a contract.
-
-### Governance model
-
-A three-layer stability model that defines what changes under what process. Layer 1, stable by contract, contains elements that do not change without formal multi-team review: Permission Card state taxonomy, semantic color tokens, permission data model, three audit reading layers, accessibility acceptance criteria. Layer 2, guided iteration, changes with documented justification: copy, default values, contextual flows, communication metaphors. Layer 3, free iteration, changes without process: illustrations, microcopy on non-critical states, transition animations, layout within defined margins. This model exists because ungoverned design degrades. Documenting the governance before launch is the only way to catch that degradation before it happens, not after.
-
-### Known design debt roadmap
-
-Five items of debt named at launch rather than discovered later: identity recovery flow requires real-user usability testing, delegated permission management is not modeled, the organization-side audit panel has less design detail than the holder's, component internationalization is not validated, and accessibility testing with users who have visual or motor disabilities is pending. Each item is documented with impact level and suggested resolution window. Documenting debt at launch is not a failure. It's the honesty exercise that enables informed decisions about when and how to address each item.
-
-[Scroll up](#content)
-
+- **Strategic diagnosis.** It reframes the problem from fragmentation to legibility, maps the three archetypes, and explains why permissions come before identity management and audit before dApp interoperability.
+- **Multi-actor tension map.** Three actors and five tensions, each with its design resolution: sovereignty vs convenience, trust vs verifiability, privacy vs compliance, simplicity vs granularity, sovereignty vs recovery.
+- **Information architecture and interaction model.** Three spaces (identity, permissions, audit), a permission data model with thirteen fields, and a synchrony model for every operation.
+- **Semantic token architecture.** Three collections: primitives, semantics, and component tokens. Eleven semantic tokens cover permission states, credential states, and action categories.
+- **Permission Card contract.** Ten states: active, expiring, expired, revoked, pending, suspended, loading, empty, error, disabled. No state shows interactive elements until the system confirms it.
+- **Attribute Disclosure contract.** Five states: full, derived, masked, pending verification, unverifiable. Derived disclosure, such as "over 18" without a birth date, is the first-class variant.
+- **Transaction Status contract.** Six states, from initiating to cancelled. It never blocks navigation and stays visible as a minimized notification.
+- **Accessibility acceptance criteria.** WCAG 2.1 AA per component, including screen-reader announcements and no state shown by color alone.
+- **Three priority flows in Figma.** Eleven frames across mobile and desktop.
+- **Organization-side architecture.** A compliance dashboard with the same tokens and the same data model, but a different information architecture.
+- **Governance model.** Three stability layers: stable by contract, guided iteration, and free iteration.
+- **Design debt roadmap.** Five items, each with an impact level and a resolution window.
 ---
-
+ 
 ## Outcomes
-
-This project did not ship to users, did not enter a pilot, and was not validated by adoption data. Any outcome framed in those terms would be invented. What follows is what the project produced in terms of artifacts, reasoning, and structural decisions that can be evaluated on their own terms.
-
-### What the project produced
-
-A complete design contract for a product with unusually high systemic complexity: multi-actor, multi-chain, asynchronous by default, with irreversible actions and compliance surfaces that cannot be retrofitted. The contract includes a strategic diagnosis, an actor model with documented conflict resolution, and a full permission data model. It includes a synchrony model that classifies every operation before it reaches a component, and a semantic token architecture with eleven tokens across three categories. It includes component contracts for the three most load-bearing components (Permission Card with ten states, Attribute Disclosure with five, Transaction Status with six). It includes eleven Figma frames across mobile and desktop, a separate organization-side architecture that reuses the same token system without forking it, a three-layer governance model, and a documented debt roadmap.
-
-### What the system resolves at the structural level
-
-The project demonstrates that a design system can serve three actors with partially conflicting agendas from a single contract. Same tokens, same component taxonomy, same state model. It's rendered as a mobile wallet for the identity holder and as a compliance operations dashboard for the consumer organization, without forking the system. This is the load-bearing test of whether the contract actually functions as a contract rather than a styling guide.
-
-The project resolves, at the design layer, the four tensions most identity products fail to reconcile. Sovereignty and convenience are reconciled by doing the right thing by default: derived attributes as the preferred option, granularity as the default disclosure level, recovery verified before onboarding completes. Trust and verifiability are reconciled by making the audit panel a three-layer system rather than three separate tools. Privacy and compliance are reconciled by separating on-chain hashes from off-chain attributes at the data-model level, which makes GDPR's right to erasure structurally possible rather than retrofitted. Simplicity and granularity are reconciled by abstracting the protocol complexity at the system layer. The holder sees permissions, not network transactions. The chain on which a permission is registered is available as technical detail, not primary information.
-
-### What the documentation makes defensible
-
-Every design decision in the project is written with its reasoning and the alternative it rejected. That structure is the project's real outcome for a reader evaluating it. A case study that documents only the final decisions presents conclusions; a case study that documents the rejected alternatives presents the reasoning behind them. The difference is the difference between showing a design and showing a designer.
-
-The governance model and the debt roadmap serve a related function. A portfolio project that does not name its limits is asking the reader to trust that the limits do not exist. A project that documents its debt at launch (recovery flow untested with real users, delegated permissions unmodeled, internationalization unvalidated, accessibility testing pending) is asking the reader to trust the designer's self-assessment instead. For a reviewer evaluating seniority, that shift is the signal.
-
-### What the project is evidence of
-
-The project is evidence of a specific capability: designing a system of sufficient complexity that the design system has to function as a contract between design and engineering, not as a library of components. It is evidence that I can reason through a multi-actor product from strategic diagnosis to component state specification without losing coherence. It is evidence that I treat exception states as first-class operational states, not as edge cases to resolve later. It is evidence that I document what I decide, why I decided it, and what I chose not to build.
-
-It is not evidence of shipping. It is not evidence of working inside a team. It is not evidence of adapting a design system to a real engineering organization's constraints. Those are different capabilities, demonstrated by different kinds of projects.
-
-### What a reader is asked to evaluate
-
-Whether the reasoning is sound. Whether the decisions hold up against the alternatives they rejected. Whether the contract described is the kind of contract the reader would want their own design system to operate under. Whether the capability the project demonstrates is the capability the reader is hiring for.
-
-The project does not ask to be evaluated on outcomes it did not produce.
-
-[Scroll up](#content)
-
+ 
+This project did not ship, did not enter a pilot, and has no adoption data. Any result framed that way would be invented. What follows is what the project produced.
+ 
+It produced a complete design contract for a complex product, from diagnosis to component states. The strongest test of the contract is the organization-side dashboard. Same tokens, same components, same state model, shown as a mobile wallet for holders and as a compliance dashboard for organizations, without forking the system.
+ 
+At the design layer, it resolves four tensions that most identity products leave open. Sovereignty and convenience: the right default does the work. Trust and verifiability: one three-layer audit panel instead of three tools. Privacy and compliance: on-chain hashes, off-chain data. Simplicity and granularity: the holder sees permissions, not network transactions.
+ 
+The project is evidence that I can reason through a multi-actor product from diagnosis to component states and treat exception states as first-class. It is not evidence of shipping, of working inside a team, or of adapting a system to a real engineering organization.
+ 
 ---
-
+ 
 ## Product Reality
-
-Everything above evaluates the contract on its own terms: whether the reasoning holds, whether the artifacts are complete, whether the system resolves what it set out to resolve. None of that answers a different question: does this hold up as a business, and does it hold up when real actors misbehave. This section stress-tests the design against those two conditions directly, and names where the design has not yet been tested rather than implying it has.
-
+ 
+The sections above judge the contract on its own terms. This section asks two harder questions. Does it hold up as a business? Does it hold up when real actors misbehave?
+ 
 ### Business reality
-
-NEXIA is modeled as B2B2C, and the economic case has to be made to the consumer organization, not to the identity holder. The holder benefits from the product but is not the one signing a contract or approving a budget line. The buyer is whoever inside the consumer organization owns verification cost, compliance exposure, or both. Most likely, this is a compliance, risk, or identity-and-access lead evaluating whether to route KYC-equivalent checks through NEXIA instead of custodying the data themselves.
-
-The economic argument the design supports is a risk-transfer argument, not a growth argument. Every attribute the organization does not custody is an attribute it cannot leak, cannot be subpoenaed for beyond what the audit trail already discloses, and does not have to secure, retain, or eventually delete under a GDPR erasure request. The audit panel's third layer, the exportable, independently verifiable technical record, is the artifact that turns "we verified this holder" into evidence a regulator or auditor accepts, without the organization having to produce the underlying personal data. That is the metric that plausibly matters to the buyer: reduced data-custody liability per verification, not conversion rate or engagement.
-
-What I have not established, and will not pretend to have established, is pricing, unit economics, or a validated willingness to pay. I do not know whether an organization would pay per verification, pay a platform fee, or expect this to be free infrastructure subsidized by something else. I do not know how NEXIA's cost compares to an organization simply hiring a compliance vendor and accepting the custody risk it already accepts today. Those are commercial questions this project was never positioned to answer, and the case study should not read as if they were answered.
-
+ 
+The buyer is the consumer organization, not the holder. Most likely it is a compliance, risk, or identity lead deciding whether to route KYC-equivalent checks through NEXIA instead of storing the data.
+ 
+The argument is risk transfer, not growth. An attribute the organization does not store is one it cannot leak, cannot be forced to hand over beyond the audit trail, and does not need to delete under GDPR. The exportable layer-three record gives auditors evidence without personal data. The metric that plausibly matters is less data-custody liability per verification.
+ 
+I have not established pricing, unit economics, or willingness to pay. I do not know if organizations would pay per verification, pay a platform fee, or expect free infrastructure. This project was never set up to answer those questions.
+ 
 ### Operational reality
-
-A few of the states the system already specifies exist precisely because I was trying to anticipate real misbehavior, not just the happy path. Worth naming explicitly, against the actual failure modes:
-
-**A credential doesn't verify cleanly.** The Attribute Disclosure component's "unverifiable" state and the credential-state taxonomy (verified, self-issued, unverifiable) exist for this. What the system does not yet resolve is the harder version of the problem: a credential that verifies technically but is being presented in bad faith. A valid credential used outside its intended context, or a holder presenting a credential issued for one purpose to satisfy a request for another. The token and state layer can represent "unverifiable." It cannot yet represent "verifiable but misused," which is a policy question as much as a design one.
-
-**Two actors see conflicting state.** Because permission changes are asynchronous on-chain writes, there is a real window where the holder has revoked a permission locally, the revocation is broadcasting, and the consumer organization's system still reflects the prior state until confirmation lands. The synchrony model accounts for this at the holder's side. The pending state is visible and honest. It does not yet specify what the organization's dashboard shows during that same window, or what obligation the organization has if it acts on stale state before confirmation completes. That gap is real, and I'm naming it here rather than in the debt roadmap because it is a cross-actor consistency problem, not a single-component gap.
-
-**The user abandons mid-flow.** Onboarding's recovery confirmation is designed to prevent silent abandonment of the one flow where abandonment is catastrophic. But the design does not specify what happens to an identity that was created and never confirmed. Does it exist in a limbo state indefinitely? Does it expire? That is an operational policy decision the design assumed would exist and did not itself make.
-
-**Network congestion stretches confirmation past the expected window.** The synchrony model states expected durations (fifteen seconds to five minutes) but does not define a hard timeout or an escalation path for an on-chain write that never confirms. A transaction stuck in "confirming" for hours needs a resolution the current Transaction Status contract does not specify.
-
-Each of these is a real gap, not a hypothetical one. Each one only becomes visible when you ask the design to survive contact with actors who are careless, adversarial, or simply offline at the wrong moment. That's exactly why I'm recording them here, instead of leaving them implicit in the debt roadmap above.
-
+ 
+Four gaps remain open.
+ 
+A credential can verify technically and still be misused, for example one issued for a different purpose. The state layer can show "unverifiable" but not "verifiable but misused." That is a policy question as much as a design one.
+ 
+Two actors can see different states. After a holder revokes a permission, the organization's system may show the old state until the chain confirms. The holder's side shows this honestly. The organization's dashboard does not yet define what it shows, or what the organization owes if it acts on stale data.
+ 
+An identity can be created and never confirmed. The design does not say if it stays in limbo or expires. That is a policy decision I assumed someone would make.
+ 
+A transaction can stay in "confirming" for hours. The synchrony model gives expected times but no hard timeout or escalation path.
+ 
 ### What I'd do differently as a real product
-
-Under a real team, with real funding and a real buyer, the first thing I would change is sequencing. I would validate the business case first: who pays, for what unit, at what price. Right now the design is more mature than the commercial model underneath it. That imbalance would not survive a real founding team's first budget conversation. I would also push the cross-actor consistency problem to resolution before writing another state contract. That's the gap where organization state lags holder state during on-chain confirmation. It looks minor in a case study, but it becomes a support and trust incident in production. Everything else, the governance model, the token architecture, the accessibility criteria, I would keep largely as designed. Those are the parts of the system I trust held up to the pressure of the question. They are not the parts I'd expect to survive contact with a real engineering team unchanged.
-
-[Scroll up](#content)
-
+ 
+I would validate the business case first: who pays, for what unit, at what price. The design is more mature than the commercial model, and that gap would not survive a real budget conversation. I would also resolve the cross-actor state problem before writing another state contract. In production, it becomes a support and trust incident. The governance model, token architecture, and accessibility criteria I would keep mostly as they are.
+ 
 ---
-
+ 
 ## Learnings
-
-### Governance was the hardest part, not the most visible one
-
-The part of the project that cost me the most was the governance model. Not because I did not know what governance meant. I understood the concept from the start. But I could not see at first how well-constructed tokens and components would actually produce governance. I assumed governance was something you wrote on top of a finished system: a set of rules, a review process, a changelog template.
-
-What I found in practice was the inverse. Governance is not written on top of the system. It is made possible by how the system is structured underneath. The three stability layers (stable by contract, guided iteration, free iteration) do not work as an afterthought rule set. They work because the tokens and components were built to make the distinction renderable in the first place. A token that mixes semantic meaning with primitive value cannot belong to Layer 1 no matter what the governance document says. A component with undefined states cannot be stable by contract because there is nothing to stabilize against.
-
-Governance, I now understand, is the name we give to a property the system already has or does not have. Writing it down is documentation. Building the system so that the documentation is possible is the actual work.
-
-### The project stopped being a UI problem before I finished the first flow
-
-I started this project thinking I was designing a wallet interface for a protocol-level product. Somewhere during the architecture phase, I realized I was not. The real problem was not how the screens looked or how the interactions felt. It was the data model underneath: what a permission is, what states it can be in, how those states relate to on-chain transactions, how the model serves three actors without forking.
-
-Once I understood that, the rest of the project reorganized itself. The tokens came from the data model, not from the visual language. The components came from the states the data model permitted, not from a screen inventory. The flows came from the decisions the data model forced users to make, not from a user journey map.
-
-The screens, in the end, were the last thing I designed. They were the rendering of the contract. Not the source of it.
-
-### I think in engineering when I design, and that is both the strength and the risk
-
-This project confirmed something I already suspected about how I work: I reason in contracts. Data models, state taxonomies, interaction primitives, governance layers: that is where I feel most confident, and it is the layer where my decisions hold up best under pressure. That is why the case study reads the way it does, and why the system documentation is the part of the project I trust most.
-
-The same tendency has a cost I want to name honestly. I over-engineer. When a problem presents itself, my first instinct is to reach for structural abstraction: another layer of the token system, a governance rule, a new state on a component, before testing whether a simpler solution was already available. In NEXIA, I caught myself doing this several times: elaborating the governance model before the components it was meant to govern were fully stable, defining component states that were theoretically necessary but practically rare, designing for scenarios that the product at its current stage would not encounter for years.
-
-What I am learning to watch for is the difference between structural rigor and structural excess. The first is what makes a design system into a contract. The second is what makes a design system into a document nobody on the engineering team wants to read. I am still calibrating that line.
-
-### The question I have not resolved
-
-This project does two things it was designed to do. It produces a defensible design contract, and it documents the reasoning behind every decision. What it does not do, and what I have not been able to do yet, is test the contract against the two forces that would actually stress it: real engineering constraints and real user behavior.
-
-I do not know what happens when this design system meets an engineering team that treats the contract as a suggestion rather than a contract. Some of the decisions in this project (the separation between destructive and irreversible actions at the token level, the ten-state Permission Card, the non-blocking Transaction Status) assume that engineering will honor the contract as written. If engineering negotiates the contract downward (fewer states, reduced specificity, convenience exceptions for happy paths), the system degrades fast. I have no way of knowing yet whether the contract is strong enough to resist that negotiation, or whether it depends on a team culture I cannot design from outside.
-
-I also do not know whether the language I used (permission requests in consequence form, audit events in plain language, recovery explained with metaphor instead of cryptography) works with users who are fatigued by consent flows and pattern-match past the content. The hypotheses behind those decisions are defensible. They are not validated. A holder who has granted a thousand permissions before mine may read the carefully written request the same way they read every cookie banner they have accepted without reading. Not because the design failed. Because the design was meeting a user who had already given up on reading.
-
-Both of those questions require the project to exist in the conditions it was designed for. That is the next phase of the work, and it is the reason I am pushing toward an MVP. Not to prove the design is correct. To find out where it is not.
-
-[Scroll up](#content)
-
+ 
+### Governance comes from structure
+ 
+I assumed governance was a rule set written on top of a finished system. It is the opposite. The three stability layers work because the tokens and components were built to make them visible. A token that mixes meaning and raw value cannot be stable by contract. Writing governance down is documentation. Building the system so it can be written down is the real work.
+ 
+### It stopped being a UI problem early
+ 
+I started by designing a wallet interface. During the architecture phase, I saw that the real problem was the data model: what a permission is, which states it has, and how it relates to on-chain transactions. Tokens came from the data model, components from its states, and flows from its decisions. The screens came last. They render the contract. They are not its source.
+ 
+### I think in contracts, and that has a cost
+ 
+Data models, state taxonomies, and governance layers are where my decisions hold up best. I also over-engineer. I reached for abstraction before testing a simpler option. In NEXIA, I elaborated governance before the components were stable and defined states that are rarely needed. I am still learning to separate structural rigor from structural excess.
+ 
+### What I have not resolved
+ 
+I have not tested the contract against real engineering or real user behavior. If an engineering team negotiates it down, with fewer states or exceptions for happy paths, I do not know if the system survives. I also do not know if consequence language works on users tired of consent flows. These are hypotheses, not validated results. Testing them is the reason I am pushing toward an MVP. The goal is not to prove the design is right. It is to find where it is wrong.
+ 
 ---
-
-*NEXIA: Case study, extended version*
+ 
+*NEXIA: Case study, short version*
 *José David Albarrán Velásquez · jdalbpd.me*
