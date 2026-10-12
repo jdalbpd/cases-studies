@@ -35,6 +35,7 @@ Both problems share the same root cause. No reliable verification or access mech
 | Suspended | Moderate | Reduced quota, 2-day grace window |
 | Revoked | High | Full block, requires a new official inquiry via case code |
 | No match | Maximum | Full block, escalating messaging after repeated attempts |
+<br/><br/>
 
 **A graduated access model, not a binary switch.** Expired and suspended guides don't lose access outright. They keep a reduced ticket quota (illustrated in the design as 200 down to 50) while a grace window runs. The suspended window is shorter on purpose, 2 days against 15 for expired. The reasoning: a suspension is the guide's own most urgent problem to fix, while an expiration is often just administrative oversight. An active-renewal case code lets a guide who already started the process keep full access past the 15-day mark. That way, the system doesn't penalize someone who is waiting on the administration, not on their own inaction. If the window closes with no resolution, the quota drops to zero. At that point it works the same as a hard block.
 

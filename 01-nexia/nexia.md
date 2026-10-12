@@ -16,7 +16,17 @@ date: 2026-01
 summary: A B2C platform, self-directed investigation into how a design system holds up under real complexity.
 ---
 
-# NEXIA
+## Content
+
+- [Context](#context)
+- [Problem](#Problem statement)
+- [Process & Desitions](#process-&-decisions)
+- [Artifacts](#artifacts)
+- [Outcomes](#outcomes)
+- [Product Reality](#product-reality)
+- [Learnings](#learnings)
+
+---
 
 ## CONTEXT
 

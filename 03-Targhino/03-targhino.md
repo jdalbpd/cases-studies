@@ -1,20 +1,30 @@
 ---
-title: Turismo Roma
-subtitle: Concept project. B2B trust and availability platform for Rome's tourism sector
-role: Product Designer
+title: "Targhino"
+subtitle: "Redesigning a national compliance procedure for electric scooter riders in Italy, with data minimization as the load-bearing principle"
+role: "Senior Product Designer — sole contributor"
 tools:
   - Figma
   - Figma Make
   - Claude (AI-assisted)
 tags:
-  - design-systems
+  - govtech
   - concept-project
-  - b2b
-  - trust-and-identity
-  - fintech-adjacent
-status: concept
+  - regulatory-ux
+  - data-ethics
+  - design-systems
+status: prototype
 date: 2026-08
-summary: A B2B platform that verifies licensed tour guides in real time and gives agencies visibility into official ticket availability. Designed to counter guide impersonation and ticket scalping in Rome.
+summary: An end-to-end redesign of Italy's new electric scooter registration procedure, built around GDPR-grounded data minimization rather than faster form-filling.
+---
+
+- [Context](#context)
+- [Problem](#Problem statement)
+- [Constraints](#constraints)
+- [Process & Desition](#process-&-decitions)
+- [Artifacts](#artifacts)
+- [Outcomes](#outcomes)
+- [Product Reality](#product-reality)
+
 ---
 
 # Targhino
