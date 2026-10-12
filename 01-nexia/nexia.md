@@ -37,7 +37,9 @@ I built it as a sole contributor, outside any client engagement. My question was
 
 I chose digital identity as the domain because it forces every hard question at once. Sovereignty. Legibility. Asynchronous on-chain operations. Three actors with partially conflicting agendas: the identity holder, the consumer organization, and the developer integrator. Exception states that are not edge cases, but daily operational reality.
 
-The output is not a visual concept. It's a full system specification. It includes a strategic diagnosis, a permission data model, and an interaction model that separates synchronous from asynchronous operations. It also includes a semantic token architecture, a ten-state component contract for the core Permission Card, and three documented priority flows with explicit decision rationale. A three-layer audit panel serves end users and legal auditors through the same system. A governance model defines what changes without review and what does not. Eleven frames in Figma make up the full contract, not just a set of screens.
+The output is not a visual concept, it's a full system specification that includes a strategic diagnosis, a permission data model, and an interaction model that separates synchronous from asynchronous operations. <br/> 
+It also includes a semantic token architecture, a ten-state component contract for the core Permission Card, and three documented priority flows with explicit decision rationale. <br/>
+A three-layer audit panel serves end users and legal auditors through the same system. A governance model defines what changes without review and what does not.
 
 The case study documents the reasoning behind each decision. Where I made trade-offs, I say what I traded. Where I left debt, I named it and scheduled it.
 
@@ -47,35 +49,43 @@ The case study documents the reasoning behind each decision. Where I made trade-
 
 ### The real problem
 
-Digital identity is usually framed as a fragmentation problem: too many passwords, too many accounts, too many silos. That framing is accurate but shallow. It describes a symptom and calls it the disease.
+> Digital identity is usually framed as a fragmentation problem: 
+Too many passwords, too many accounts, too many silos. That framing is accurate but shallow. It describes a symptom and calls it the disease. <br/> 
+> The structural problem is not fragmentation. It is that users cannot see the risk they are carrying.
 
-The structural problem is not fragmentation. It is that users cannot see the risk they are carrying.
-
-Every time someone clicks "Sign in with," accepts a cookie banner, or hands over a scanned ID to onboard into a service, they transfer consequences they cannot inspect. What data was actually shared. For how long. With what scope. Under what conditions it gets revoked, or if it gets revoked at all. The mechanism that should answer those questions does not exist at the user's layer. It lives in the backend of whoever is verifying them, and the user has to trust that backend with no way to check it.
+Every time someone clicks "Sign in with," accepts a cookie banner, or hands over a scanned ID to onboard into a service, they transfer consequences they cannot inspect. What data was actually shared?, For how long?, With what scope?, Under what conditions it gets revoked?, or What happens if it gets revoked at all?. <br/> 
+The mechanism that should answer those questions does not exist at the user's layer. It lives in the backend of whoever is verifying them, and the user has to trust that backend with no way to check it.
 
 The three dominant solution archetypes each hit a structural ceiling before solving this:
 
-Password managers solve authentication but not identity. They custody secrets, not verifiable attributes. And the provider itself stays a single point of failure. Corporate SSO solves identity inside an organizational perimeter, but the moment the contractual relationship ends, so does the identity. The user never owned it. Crypto wallets with identity layers get sovereignty right, but they expose protocol complexity to the end user. That complexity limits adoption to a technical audience.
+1. Password managers solve authentication but not identity, they custody secrets, not verifiable attributes. The provider itself stays a single point of failure. 
+2. Corporate SSO solves identity inside an organizational perimeter, but the moment the contractual relationship ends, so does the identity and the user never owned it. 
+3. Crypto wallets with identity layers get sovereignty right, but they expose protocol complexity to the end user. <br/> 
+That complexity limits adoption to a technical audience.
 
-The gap sits at the intersection of two needs. A product needs the Web3 sovereignty model, but without exposing its complexity. Organizations need a reliable verification surface, but without having to custody sensitive data.
+> The gap sits at the intersection of two needs. A product needs the Web3 sovereignty model, but without exposing its complexity. Organizations need a reliable verification surface, but without having to custody sensitive data.
 
-### Why this becomes a design problem, not a technical one
+### Why this becomes a design problem, not a technical one?
 
-The technical ingredients to solve this already exist: decentralized identifiers, verifiable credentials, on-chain permission registries, derived attributes with zero-knowledge properties. The protocol layer is not the bottleneck.
+The technical ingredients to solve this already exist: decentralized identifiers, verifiable credentials, on-chain permission registries, derived attributes with zero-knowledge properties. <br/> The protocol layer is not the bottleneck.
 
-The bottleneck is legibility.
+> The bottleneck is legibility.
 
-A permission is useless if the person granting it does not understand what they are granting. An audit log is useless if the person reading it cannot tell an authorized access from a denied one. A recovery flow is useless if it is technically sound but nobody completes it. Sovereignty, in a product like this, is not a backend property. It is a property that has to be rendered: in language the user uses, in states the user can distinguish, in default behaviors that do the right thing before the user has to ask.
+A permission is useless if the person granting it does not understand what they are granting, an audit log is useless if the person reading it cannot tell an authorized access from a denied one, a recovery flow is useless if it is technically sound but nobody completes it. The thing is that sovereignty in a product like this, is not a backend property but it is a property that has to be rendered in language the user uses, in states the user can distinguish, in default behaviors that do the right thing before the user has to ask.
 
-This reframes the problem. The product is not "a blockchain-based identity wallet." The product is **a legibility layer over a sovereignty protocol**. The design system is the mechanism that decides whether that legibility survives contact with real operational states: pending transactions, expired permissions, unverifiable credentials, congested networks, denied access attempts, delegated recoveries.
+This reframes the problem, the product is not "a blockchain-based identity wallet." but is a **legibility layer over a sovereignty protocol**. <br/>
+The design system is the mechanism that decides whether that legibility survives contact with real operational states: pending transactions, expired permissions, unverifiable credentials, congested networks, denied access attempts and delegated recoveries. At this point
 
-### What NEXIA is betting on
+### What NEXIA is betting on?
 
 NEXIA's bet is that three things can be true at the same time:
 
-The identity holder gets real control over what they share, rendered in language they actually use. The consumer organization gets an instant verification surface with an auditable trail. It can present that trail to a regulator without custodying the underlying data. The developer gets predictable APIs and abstractions that let them build without managing blockchain edge cases.
+1. The identity holder gets real control over what they share, rendered in language they actually use. 
+2. The consumer organization gets an instant verification surface with an auditable trail. It can present that trail to a regulator without custodying the underlying data, and
+3. The developer gets predictable APIs and abstractions that let them build without managing blockchain edge cases.
 
-None of those three is hard to deliver in isolation. Delivering all three from the same system, with one coherent design contract underneath, is the design problem.
+None of those three is hard to deliver in isolation. <br/>
+Delivering all three from the same system, with one coherent design contract underneath, is the design problem.
 
 That is what this case study documents.
 
@@ -85,43 +95,50 @@ That is what this case study documents.
 
 ## Constraints
 
-This was a self-directed project. There was no client brief, no timeline pressure, no engineering team pushing back on scope, no budget ceiling. The conventional constraints of a commercial engagement did not apply, and I will not pretend they did.
+This was a self-directed project. There was no client brief, no timeline pressure, no engineering team pushing back on scope and no budget ceiling. The conventional constraints of a commercial engagement did not apply, and I will not pretend they did.
 
-What did apply were the structural constraints imposed by the domain itself. Digital identity on a sovereign protocol is not a greenfield. It is a space with hard edges. The design has to respect those edges from the first decision, or it collapses under its own assumptions later.
+What did apply were the structural constraints imposed by the domain itself. Digital identity on a sovereign protocol is not a greenfield, it is a space with hard edges and the design has to respect those edges from the first decision, or it will collaps under its own assumptions later.
 
 ### Asynchrony is not optional
 
-On-chain operations are not instantaneous. A permission grant, a revocation, a credential registration: each one involves network confirmation times that range from fifteen seconds to five minutes under normal conditions, and longer under congestion. This is not a loading state to be designed around. It is the physics of the medium.
+On-chain operations are not instantaneous. A permission grant, a revocation, a credential registration: each one involves network confirmation times that range from fifteen seconds to five minutes under normal conditions, and this range could be longer under congestion in real time. This is not a loading state to be designed around, it is the physics of the medium.
 
-Any design that treats asynchronous operations as a special case rather than the default case will produce UI that breaks as soon as it meets real network conditions. That constraint forced a specific architectural decision early. Model every action as either synchronous (off-chain reads) or asynchronous (on-chain writes). Expose the intermediate state as a normal operational state. Never block navigation while an action is in flight. Every subsequent component decision flows from that.
+Any design that treats asynchronous operations as a special case rather than the default will result in an interface that fails when faced with real-world network conditions. This limitation compelled me to make a specific architectural decision from the outset: modeling every action as either synchronous (off-chain reads) or asynchronous (on-chain writes), exposing intermediate states as normal operational states, and never blocking navigation while an action is in progress. <br/>
+All subsequent decisions regarding components stem from this approach.
 
 ### Irreversibility has to be communicated before the action, not after
 
-Some actions in NEXIA are reversible (revoking a permission can be followed by re-granting it). Some are not (certain on-chain records cannot be rewritten). A design system that does not distinguish between those two categories at the token level, before components, before flows, will produce interfaces that treat all destructive actions the same way. Users will learn to ignore the warnings.
+Some actions in NEXIA are reversible, as revoking a permission can be followed by re-granting it and some others are not, as certain on-chain records cannot be rewritten. <br/> 
+A design system that does not distinguish between those two categories at the token level before components, before flows, will produce interfaces that treat all destructive actions the same way and users will learn to ignore the warnings.
+<br/> 
 
-This is why the semantic color system has two separate tokens: `color.action.destructive` and `color.action.irreversible`. That distinction is not cosmetic. It is a constraint the domain imposes, rendered as a primitive.
+This is why the semantic color system has two separate tokens: `color.action.destructive` and `color.action.irreversible`. That distinction is not cosmetic it is a constraint the domain imposes, rendered as a primitive.
 
 ### Compliance cannot be retrofitted
 
-GDPR's right to erasure is incompatible with a system where identity attributes live fully on-chain. An architecture that stores complete personal data on an immutable ledger cannot be made compliant later. It has to be structured from the start to separate what lives on-chain (permission hashes, audit events) from what lives off-chain (the actual attributes under holder control).
+GDPR's right to erasure is incompatible with a system where identity attributes live fully on-chain. An architecture that stores complete personal data on an immutable ledger cannot be made compliant later, it has to be structured from the start to separate what lives on-chain (permission hashes, audit events) from what lives off-chain (the actual attributes under holder control).
 
-This is a structural constraint, not a feature. It shaped the permission data model, the audit panel architecture, and the governance layer. Designing the system to be compliance-compatible from the ground up was non-negotiable.
+This is a structural constraint, not a feature. It shaped the permissions data model, the audit panel architecture, and the governance layer; consequently, designing a system that was compliant with regulations from the ground up was a non-negotiable requirement.
 
-### Three actors, one system
+### Three actors, one system:
 
-The product serves three actors with partially conflicting agendas: the identity holder, the consumer organization, and the developer integrator. The constraint was that all three had to be served from the same design system: not three forked products, not three visual languages, not three permission models.
+The product serves three actors with partially conflicting agendas: 
+1. The identity holder
+2. The consumer organization, and 
+3. The developer integrator. <br/>
+The constraint was that all three had to be served from the same design system: not three forked products, not three visual languages, not three permission models.
 
-This ruled out certain shortcuts. I could not design the holder experience first and retrofit the organization's compliance view later. The data model had to work for both from the beginning. The component contract had to render coherently for a consumer using a mobile wallet and for a compliance officer scanning twelve hundred verifications a day from a desktop dashboard. The conflict matrix between actors (documented in the case study) exists because the constraint forced it to exist.
+This ruled out certain shortcuts, as it was not possible to design the holder's experience first and subsequently adapt the organization's compliance perspective; the data model had to function for both scenarios from the outset. The component's contract had to enable a consistent display for both a user with a mobile wallet and a compliance officer processing 1,200 checks daily via a desktop dashboard. The actor conflict matrix documented in the case study exists precisely because that constraint necessitated it.
 
 ### No validation loop with real users
 
-This is the most important constraint to name honestly. I had no users to test with. No compliance officers reviewing the audit panel. No developers stress-testing the API abstractions. No holders trying to recover from a lost device.
+This is the most important constraint to name honestly. I had no users to test with, no compliance officers reviewing the audit panel, no developers stress-testing the API abstractions and no holders trying to recover from a lost device.
 
-That constraint has consequences I want to be explicit about. Every design decision in this project is defensible on the basis of reasoning: from first principles of the domain, from established patterns in adjacent products, from documented usability research on consent flows and asynchronous interfaces. None of it is validated by contact with real usage. The known design debt roadmap at the end of the case study exists precisely because I treated this constraint seriously rather than pretending it was not there.
+That constraint has consequences I want to be explicit about: every design decision in this project is defensible on the basis of reasoning: from first principles of the domain, from established patterns in adjacent products, from documented usability research on consent flows and asynchronous interfaces. None of it is validated by contact with real usage. The known design debt roadmap at the end of this case study exists precisely because I treated this constraint seriously rather than pretending it was not there.
 
 ### What I chose not to constrain
 
-One decision I want to name: I did not artificially restrict scope to make the project easier to complete. I could have designed only the holder's mobile experience, only the onboarding flow, only the token architecture. That would have been faster and easier to present.
+One decision I want to name: I did not artificially restrict scope to make the project easier to complete. I could have designed only the holder's mobile experience, the onboarding flow, or even the token architecture and that would have been faster and even easier to present.
 
 Instead, I chose to build the full contract: both mobile and desktop, all three actors, the governance layer, the debt roadmap. The point of the exercise was to see whether a design system could hold up across that surface. Narrowing the scope would have defeated the purpose.
 
