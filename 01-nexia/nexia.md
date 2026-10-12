@@ -1,21 +1,26 @@
+---
+title: Nexia
+subtitle: Decentralized identity wallet with granular on-chain permissions - Concept project.
+role: Product Designer, sole contributor
+tools:
+  - Figma
+  - Figma Make
+  - Claude (AI-assisted)
+tags:
+  - design-systems
+  - concept-project
+  - b2c
+  - trust-and-identity
+status: 0→1, MVP in definition.
+date: 2026-01
+summary: A B2C platform, self-directed investigation into how a design system holds up under real complexity.
+---
+
 # NEXIA
 
-**Decentralized identity wallet with granular on-chain permissions**
+## CONTEXT
 
----
-
-**Year:** 2026
-**Role:** Senior Product Designer, sole contributor
-**Type:** Self-directed design systems investigation
-**Stage modeled:** 0→1, MVP in definition
-**Platforms:** Mobile-first, desktop
-**Business model modeled:** B2B2C
-
----
-
-## Context
-
-NEXIA is a self-directed investigation into how a design system holds up under real complexity. The product underneath it is multi-actor, multi-chain, and multi-state. It includes irreversible actions and compliance surfaces that cannot be faked later.
+The product underneath it is multi-actor, multi-chain, and multi-state. It includes irreversible actions and compliance surfaces that cannot be faked later.
 
 I built it as a sole contributor, outside any client engagement. My question was specific: what does a design system look like when it works as a contract between design and engineering, not just a component library?
 
