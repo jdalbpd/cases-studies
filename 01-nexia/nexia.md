@@ -19,7 +19,7 @@ summary: A B2C platform, self-directed investigation into how a design system ho
 ## Content
 
 - [Context](#context)
-- [Problem](#Problem statement)
+- [Problem Statement](#problem-statement)
 - [Process & Desitions](#process-&-decisions)
 - [Artifacts](#artifacts)
 - [Outcomes](#outcomes)
@@ -121,6 +121,8 @@ That constraint has consequences I want to be explicit about. Every design decis
 One decision I want to name: I did not artificially restrict scope to make the project easier to complete. I could have designed only the holder's mobile experience, only the onboarding flow, only the token architecture. That would have been faster and easier to present.
 
 Instead, I chose to build the full contract: both mobile and desktop, all three actors, the governance layer, the debt roadmap. The point of the exercise was to see whether a design system could hold up across that surface. Narrowing the scope would have defeated the purpose.
+
+[Scroll up](#content)
 
 ---
 
@@ -248,6 +250,8 @@ A three-layer stability model that defines what changes under what process. Laye
 
 Five items of debt named at launch rather than discovered later: identity recovery flow requires real-user usability testing, delegated permission management is not modeled, the organization-side audit panel has less design detail than the holder's, component internationalization is not validated, and accessibility testing with users who have visual or motor disabilities is pending. Each item is documented with impact level and suggested resolution window. Documenting debt at launch is not a failure. It's the honesty exercise that enables informed decisions about when and how to address each item.
 
+[Scroll up](#content)
+
 ---
 
 ## Outcomes
@@ -282,6 +286,8 @@ Whether the reasoning is sound. Whether the decisions hold up against the altern
 
 The project does not ask to be evaluated on outcomes it did not produce.
 
+[Scroll up](#content)
+
 ---
 
 ## Product Reality
@@ -313,6 +319,8 @@ Each of these is a real gap, not a hypothetical one. Each one only becomes visib
 ### What I'd do differently as a real product
 
 Under a real team, with real funding and a real buyer, the first thing I would change is sequencing. I would validate the business case first: who pays, for what unit, at what price. Right now the design is more mature than the commercial model underneath it. That imbalance would not survive a real founding team's first budget conversation. I would also push the cross-actor consistency problem to resolution before writing another state contract. That's the gap where organization state lags holder state during on-chain confirmation. It looks minor in a case study, but it becomes a support and trust incident in production. Everything else, the governance model, the token architecture, the accessibility criteria, I would keep largely as designed. Those are the parts of the system I trust held up to the pressure of the question. They are not the parts I'd expect to survive contact with a real engineering team unchanged.
+
+[Scroll up](#content)
 
 ---
 
@@ -351,6 +359,8 @@ I do not know what happens when this design system meets an engineering team tha
 I also do not know whether the language I used (permission requests in consequence form, audit events in plain language, recovery explained with metaphor instead of cryptography) works with users who are fatigued by consent flows and pattern-match past the content. The hypotheses behind those decisions are defensible. They are not validated. A holder who has granted a thousand permissions before mine may read the carefully written request the same way they read every cookie banner they have accepted without reading. Not because the design failed. Because the design was meeting a user who had already given up on reading.
 
 Both of those questions require the project to exist in the conditions it was designed for. That is the next phase of the work, and it is the reason I am pushing toward an MVP. Not to prove the design is correct. To find out where it is not.
+
+[Scroll up](#content)
 
 ---
 
