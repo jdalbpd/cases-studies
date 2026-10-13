@@ -104,22 +104,27 @@ Three flows carry the product: granting permissions, reading the audit, and onbo
 
 Below are two decisions per flow. Each shows what I decided, why, and what I rejected. The rest are documented in Figma and the extended version on Behance.
 
-### Flow 1: Granting granular permissions
-Permission requests use consequence language, not technical language
+---
 
-The holder does not see DIDs and schemas. They see a sentence: "Banco Santander wants to verify that you are over 18 and resident of Spain, for the next twelve months." The system does the translation, not the user.
+### Flow 1: Granting granular permissions
+
+The holder does not see DIDs and schemas, they see a sentence: "Banco Santander wants to verify that you are over 18 and resident of Spain, for the next twelve months." The system does the translation, not the user.
 
 **Why:** a permission the user does not understand is only recorded consent. It protects the organization on paper and weakens trust in practice.
 
 **Rejected:** a technical view and a plain view with a toggle. A toggle creates two classes of users, and the technical detail becomes invisible. I kept it as secondary disclosure inside the flow.
 
-### Granularity is the default
+> Permission requests use consequence language, not technical language
+
+#### Granularity is the default
 
 Every requested attribute appears on its own. There is no prominent "Accept all." The "Accept with recommended configuration" button shows what it implies before the user commits.
 
 **Why:** in a sovereignty product, the default is the ethical position. "Accept all" as the easy path would contradict the thesis on the most-used screen.
 
 **Rejected:** a summary first, with granular controls on tap. It optimizes for completion speed. Here, a user who pauses and adjusts scope is the better outcome.
+
+---
 
 ### Flow 2: Audit panel and on-chain traceability
 
@@ -138,6 +143,8 @@ Every denied attempt appears in the main view with the same weight as an authori
 **Why:** a log of successes only is an activity log, not an audit. A pattern of denied attempts is often the strongest warning a user can get.
 
 **Rejected:** showing denied events only above a threshold. Thresholds hide low-volume patterns. One denied attempt from an unknown organization can matter more than fifty from a misconfigured API.
+
+---
 
 ### Flow 3: Onboarding and credential incorporation
 
