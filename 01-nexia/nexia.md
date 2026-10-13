@@ -121,8 +121,6 @@ The holder does not see DIDs and schemas, they see a sentence: "Banco Santander 
 
 **Rejected:** a technical view and a plain view with a toggle. A toggle creates two classes of users, and the technical detail becomes invisible. I kept it as secondary disclosure inside the flow.
 
-<font color="red">This text is red!</font>
-
 > Permission requests use consequence language, not technical language
 
 #### Granularity is the default
