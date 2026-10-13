@@ -139,6 +139,8 @@ Every requested attribute appears on its own. There is no prominent "Accept all.
 
 Layer one is a plain summary: "On March 4th, Banco Santander verified that you are over 18. Authorized." Layer two shows which attributes were queried, which credential version was used, and why a check failed. Layer three is the technical record: transaction hash, chain, block, and verification ID. It can be exported and verified independently.
 
+![Audit panel and on-chain traceability](/01-nexia/img/F2.png "Image of the screen")
+
 **Why?:** holders, compliance reviewers, and auditors read the same events at different depths. Separate tools would split the source of truth.
 
 **Rejected:** role-based views. The real axis is depth of inquiry, not role. A holder may need layer three for a legal process. A compliance officer may start at layer one to scan volume.
@@ -158,6 +160,8 @@ Every denied attempt appears in the main view with the same weight as an authori
 #### Onboarding starts with a question
 
 The first screen asks "What would you like to do first?" The options are real tasks: connect with a service that asked for verification, store identity documents, or see which apps have access.
+
+![Onboarding and credential incorporation](/01-nexia/img/F3.png "Image of the screen")
 
 **Why?:** users arrive with a goal, either an organization's request or a need for control. A goal-driven start shortens the time to first value.
 
@@ -255,5 +259,5 @@ I have not tested the contract against real engineering or real user behavior. I
  
 ---
  
-*NEXIA: Case study, short version*
+*NEXIA: Case study*
 *José David Albarrán Velásquez · jdalbpd.me*
