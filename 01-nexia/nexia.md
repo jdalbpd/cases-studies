@@ -44,6 +44,8 @@ Digital identity forces every hard question at once. Sovereignty and legibility.
 
 The output is a full system specification, not a visual concept. It includes a strategic diagnosis, a permission data model, a synchrony model, a token architecture, and a ten-state Permission Card contract. It also covers three priority flows, a three-layer audit panel, and a governance model. Eleven Figma frames render the contract. I document each decision with the alternative I rejected, and I name the debt I left.
 
+<br/>
+
 ## Problem statement
 
 ### The real problem
@@ -67,6 +69,8 @@ So the product is a legibility layer over a sovereignty protocol. The design sys
 Three things can be true at once. The holder controls what they share, in plain language. The organization gets instant verification and an auditable trail, without custody of the data. The developer gets predictable APIs without managing blockchain edge cases.
 
 Each one is easy alone. Delivering all three from one design contract is the design problem.
+
+<br/>
 
 ## Constraints
 
@@ -109,12 +113,15 @@ Below are two decisions per flow. Each shows what I decided, why, and what I rej
 ### Flow 1: Granting granular permissions
 
 The holder does not see DIDs and schemas, they see a sentence: "Banco Santander wants to verify that you are over 18 and resident of Spain, for the next twelve months." The system does the translation, not the user.
+<br/>
 
 ![Granting granular permissions](/01-nexia/img/F1.png "Image of the screen")
 
 **Why?:** a permission the user does not understand is only recorded consent. It protects the organization on paper and weakens trust in practice.
 
 **Rejected:** a technical view and a plain view with a toggle. A toggle creates two classes of users, and the technical detail becomes invisible. I kept it as secondary disclosure inside the flow.
+
+<font color="red">This text is red!</font>
 
 > Permission requests use consequence language, not technical language
 
