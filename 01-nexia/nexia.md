@@ -110,7 +110,9 @@ Below are two decisions per flow. Each shows what I decided, why, and what I rej
 
 The holder does not see DIDs and schemas, they see a sentence: "Banco Santander wants to verify that you are over 18 and resident of Spain, for the next twelve months." The system does the translation, not the user.
 
-**Why:** a permission the user does not understand is only recorded consent. It protects the organization on paper and weakens trust in practice.
+![Granting granular permissions](/01-nexia/img/F1.png "Image of the screen")
+
+**Why?:** a permission the user does not understand is only recorded consent. It protects the organization on paper and weakens trust in practice.
 
 **Rejected:** a technical view and a plain view with a toggle. A toggle creates two classes of users, and the technical detail becomes invisible. I kept it as secondary disclosure inside the flow.
 
@@ -120,7 +122,7 @@ The holder does not see DIDs and schemas, they see a sentence: "Banco Santander 
 
 Every requested attribute appears on its own. There is no prominent "Accept all." The "Accept with recommended configuration" button shows what it implies before the user commits.
 
-**Why:** in a sovereignty product, the default is the ethical position. "Accept all" as the easy path would contradict the thesis on the most-used screen.
+**Why?:** in a sovereignty product, the default is the ethical position. "Accept all" as the easy path would contradict the thesis on the most-used screen.
 
 **Rejected:** a summary first, with granular controls on tap. It optimizes for completion speed. Here, a user who pauses and adjusts scope is the better outcome.
 
@@ -132,7 +134,7 @@ Every requested attribute appears on its own. There is no prominent "Accept all.
 
 Layer one is a plain summary: "On March 4th, Banco Santander verified that you are over 18. Authorized." Layer two shows which attributes were queried, which credential version was used, and why a check failed. Layer three is the technical record: transaction hash, chain, block, and verification ID. It can be exported and verified independently.
 
-**Why:** holders, compliance reviewers, and auditors read the same events at different depths. Separate tools would split the source of truth.
+**Why?:** holders, compliance reviewers, and auditors read the same events at different depths. Separate tools would split the source of truth.
 
 **Rejected:** role-based views. The real axis is depth of inquiry, not role. A holder may need layer three for a legal process. A compliance officer may start at layer one to scan volume.
 
@@ -140,7 +142,7 @@ Layer one is a plain summary: "On March 4th, Banco Santander verified that you a
 
 Every denied attempt appears in the main view with the same weight as an authorized one. Denied events can be filtered, exported, and counted.
 
-**Why:** a log of successes only is an activity log, not an audit. A pattern of denied attempts is often the strongest warning a user can get.
+**Why?:** a log of successes only is an activity log, not an audit. A pattern of denied attempts is often the strongest warning a user can get.
 
 **Rejected:** showing denied events only above a threshold. Thresholds hide low-volume patterns. One denied attempt from an unknown organization can matter more than fifty from a misconfigured API.
 
@@ -152,7 +154,7 @@ Every denied attempt appears in the main view with the same weight as an authori
 
 The first screen asks "What would you like to do first?" The options are real tasks: connect with a service that asked for verification, store identity documents, or see which apps have access.
 
-**Why:** users arrive with a goal, either an organization's request or a need for control. A goal-driven start shortens the time to first value.
+**Why?:** users arrive with a goal, either an organization's request or a need for control. A goal-driven start shortens the time to first value.
 
 **Rejected:** a guided tour with a skip option. If the tour is worth watching, it should not be skippable. If it can be skipped, it should not exist.
 
@@ -160,7 +162,7 @@ The first screen asks "What would you like to do first?" The options are real ta
 
 After writing down the recovery phrase, the user enters three specific words in order. Onboarding is not complete until this succeeds.
 
-**Why:** if a user loses their device and cannot recover, no support team can fix it. An untested recovery flow gives a false sense of safety.
+**Why?:** if a user loses their device and cannot recover, no support team can fix it. An untested recovery flow gives a false sense of safety.
 
 **Rejected:** confirming recovery within seven days after onboarding. Deferred confirmation almost never happens. The cost then moves to the worst moment, when recovery is needed.
 
