@@ -13,17 +13,19 @@ I work at the intersection of design systems, design engineering, regulated prod
 
 | # | Projects | Description | Read here |
 |---|---|---|---|
-| 01 | **NEXIA** | Identity, permissions, and design systems for complex workflows | [Read](./01-nexia/nexia.md) |
-| 02 | **Turismo Roma** | B2B trust, verification, and operational systems | [Read](./02-turismo-roma/turismo-roma.md) |
-| 03 | **Targhino** | Regulatory product, service design, and end-to-end user journeys | [Read](./03-Targhino/03-targhino.md) |
+| 01 | **NEXIA** | Identity, permissions, and design systems for complex workflows | [Read](./nexia/nexia.md) |
+| 02 | **ItalyCasa** | Design system ownership and AI-agent rules on a live Next.js product (active engagement) | [Read](./italycasa/italycasa.md) |
+| 03 | **Turismo Roma** | B2B trust, verification, and operational systems | [Read](./turismo-roma/turismo-roma.md) |
+| 04 | **MyINPS Bacheca Redesign** | An information architecture audit and redesign of the MyINPS personal area home page | [Read](./myinps-bacheca/myinps-bacheca.md) |
+| 05 | **Targhino** | Regulatory product, service design, and end-to-end user journeys | [Read](./targhino/targhino.md) |
 
 ## 🕹️ Supporting projects
+
 | # | Projects | Description | Read here |
 |---|---|---|---|
-| 04 | **TraceQ** | Regulated and responsible UX patterns | [Read](./04-TraceQ/traceQ.md) |
-| 05 | **Intérprete Busta Paga** | Financial data, complex information, trust, and clarity | [Read](./05-interprete-busta-paga/interprete-bustapaga.md) |
-| 06 | **Soloist** | AI interfaces and conversational products | [Read](./06-soloist/soloist.md) |
-| 07 | **Proptech Platform** | Design system ownership and AI-agent rules on a live Next.js product (active engagement) | [Read](./07-proptech-platform/proptech-platform.md) |
+| 06 | **Intérprete Busta Paga** | Financial data, complex information, trust, and clarity | [Read](./interprete-busta-paga/interprete-bustapaga.md) |
+| 07 | **Soloist** | AI interfaces and conversational products | [Read](./soloist/soloist.md) |
+| 08 | **TraceQ** | Regulated and responsible UX patterns | [Read](./traceq/traceq.md) |
 
 <br/>
 
