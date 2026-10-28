@@ -13,19 +13,19 @@ I work at the intersection of design systems, design engineering, regulated prod
 
 | # | Projects | Description | Read here |
 |---|---|---|---|
-| 01 | **NEXIA** | Identity, permissions, and design systems for complex workflows | [Read](./nexia/nexia.md) |
-| 02 | **ItalyCasa** | Design system ownership and AI-agent rules on a live Next.js product (active engagement) | [Read](./italycasa/italycasa.md) |
-| 03 | **Turismo Roma** | B2B trust, verification, and operational systems | [Read](./turismo-roma/turismo-roma.md) |
-| 04 | **MyINPS Bacheca Redesign** | An information architecture audit and redesign of the MyINPS personal area home page | [Read](./myinps-bacheca/myinps-bacheca.md) |
-| 05 | **Targhino** | Regulatory product, service design, and end-to-end user journeys | [Read](./targhino/targhino.md) |
+| 01 | **NEXIA** | Identity, permissions, and design systems for complex workflows | [Read](./01-nexia/nexia.md) |
+| 02 | **ItalyCasa** | Design system ownership and AI-agent rules on a live Next.js product (active engagement) | [Read](./02-ItalyCasa/italycasa.md) |
+| 03 | **Turismo Roma** | B2B trust, verification, and operational systems | [Read](./03-turismo-roma/turismo-roma.md) |
+| 04 | **MyINPS Bacheca Redesign** | An information architecture audit and redesign of the MyINPS personal area home page | [Read](./04-MyINPS/MyINPS.md) |
+| 05 | **Targhino** | Regulatory product, service design, and end-to-end user journeys | [Read](./05-Targhino/targhino.md) |
 
 ## 🕹️ Supporting projects
 
 | # | Projects | Description | Read here |
 |---|---|---|---|
-| 06 | **Intérprete Busta Paga** | Financial data, complex information, trust, and clarity | [Read](./interprete-busta-paga/interprete-bustapaga.md) |
-| 07 | **Soloist** | AI interfaces and conversational products | [Read](./soloist/soloist.md) |
-| 08 | **TraceQ** | Regulated and responsible UX patterns | [Read](./traceq/traceq.md) |
+| 06 | **Intérprete Busta Paga** | Financial data, complex information, trust, and clarity | [Read](./06-interprete-busta-paga/interprete-bustapaga.md) |
+| 07 | **Soloist** | AI interfaces and conversational products | [Read](./07-soloist/soloist.md) |
+| 08 | **TraceQ** | Regulated and responsible UX patterns | [Read](./08-TraceQ/traceQ.md) |
 
 <br/>
 
