@@ -29,9 +29,11 @@ Owning the design system of an Italian real estate platform, from Figma to produ
 
 ## Context
 
-ItalyCasa is an Italian proptech platform for property listings. It serves two kinds of users. Private owners publish one property, usually once. Agencies and professionals manage many listings and need more control. The Italian market is led by Immobiliare.it and Idealista, and both portals treat agencies as their key paying customer.
+#### ItalyCasa is an Italian proptech platform for property listings.
 
-I joined as the product designer and became the owner of the design system. The core team is two people: me and a partner who gave me authority over the whole design product, that included changing the repo documentation and constraints when my design needed it. A PM also works on the same repository, using an AI coding agent for site-build tasks.
+It serves two kinds of users: Private owners publish one property, usually once and Agencies and professionals manage many listings and need more control. It's important to point the fact that the Italian market is led by Immobiliare.it and Idealista, and both portals treat agencies as their key paying customer.
+
+I joined this project as the product designer and became the owner of the design system. The core team is two people: me and a partner who gave me authority over the whole design product, that included changing the repo documentation and constraints when my design needed it. A PM also works on the same repository, using an AI coding agent for site-build tasks.
 
 The engagement started in May 2026 and is still active. Over that time I worked on competitive research, the listing creation wizard, the user profile and dashboard, the login and signup flows, the home hero, a B2B landing page for agencies, and Google Ads display creative.
 
