@@ -1,90 +1,142 @@
 ---
-title: "Targhino"
-subtitle: "Redesigning a national compliance procedure for electric scooter riders in Italy, with data minimization as the load-bearing principle"
-role: "Senior Product Designer — sole contributor"
+title: Targhino
+subtitle: Redesigning a mandatory regulatory procedure without removing the friction the law requires
+role: Senior Product Designer, sole contributor
+type: Concept Project
 tools:
-  - Figma
   - Figma Make
-  - Claude (AI-assisted)
+  - NEXIA Design System
 tags:
+  - regulatory-compliance
+  - service-design
   - govtech
-  - concept-project
-  - regulatory-ux
-  - data-ethics
+  - data-minimization
   - design-systems
 status: prototype
 date: 2026-08
-summary: An end-to-end redesign of Italy's new electric scooter registration procedure, built around GDPR-grounded data minimization rather than faster form-filling.
----
-
-- [Context](#context)
-- [Problem](#Problem statement)
-- [Constraints](#constraints)
-- [Process & Desition](#process-&-decitions)
-- [Artifacts](#artifacts)
-- [Outcomes](#outcomes)
-- [Product Reality](#product-reality)
-
+summary: A redesign of Italy's new electric scooter registration procedure. It keeps the checks the law requires, removes the friction it does not, and treats rejection, review and failure states as core design work.
 ---
 
 # Targhino
 
+Product Designer · Concept Project
+
+---
+
+## Impact and metrics (estimated)
+
+Nothing in this section is measured. Targhino is a concept project with no live users and no access to the real platform's data. The numbers below are hypotheses built from public benchmarks.
+
+The benchmarks come from two secondary sources: a UX consultancy article and a KYC vendor's blog. The consultancy reports that up to 60% of users abandon digital onboarding before identity verification is done, and that asking for identity document uploads can cut conversion by around 29%. The vendor describes a "good" KYC conversion rate as 60% to 90%, depending on the sector. Vendors have a reason to publish high drop-off figures, and none of this comes from a government service. I use it only to set a reasonable range.
+
+| Metric | Where the design acts | Working hypothesis |
+| --- | --- | --- |
+| Completion rate by applicant profile (adult EU, minor, non-EU, business) | The conditional tree shows only the documents that apply to that profile | 75% or more, the upper half of the vendor range, because users are motivated and the procedure is mandatory |
+| First-pass approval rate (approved without any correction) | Each field explains why it is asked, before submission | Higher than the real procedure's rate. I could not find that rate published, so I set no number |
+| Correction recovery rate (rejected applicants who resubmit successfully) | A rejection points to the failing field, with no restart | Most rejected applicants recover. This is the metric I would watch first |
+| Time from first screen to payment receipt | No duplicate data entry, no manual receipt upload | Shorter than the current multi-system path. The baseline is unmeasured |
+| Fields and documents shown per profile, against the current procedure | Conditional blocks instead of one flat list | Not counted yet. It is the one figure I can compute from the prototypes without users |
+
 ## Context
 
-In 2026, Italy introduced a new legal requirement for private electric scooters: every owner must obtain a personal identification tag — the "targhino" — linked to their tax code, not to the vehicle itself, along with mandatory liability insurance. The rule is a reasonable public-safety response to over a million unregistered scooters on Italian streets. Its digital implementation is not.
+In 2026 Italy made a personal identification tag, the "targhino" (officially the contrassegno identificativo), mandatory for privately owned electric scooters. Liability insurance becomes mandatory from July 2026. The tag is tied to the owner's tax code, not to the scooter. Fines run from €100 to €400, and up to €800 plus seizure when technical requirements are not met. It is a national rule, not a city one.
 
-I came across this while taking a data ethics course and decided to trace the actual procedure end-to-end, rather than assume it was well designed because it was mandatory. What I found was a request that spans three disconnected systems: a general information portal, a generic payment module, and a separate case-management system — stitched together with downloadable PDF forms and manual re-uploads. One community blog documented, with a screenshot, a section meant to explain how to *request* the tag instead using the word "cancel" at a key point — a real, not hypothetical, instance of the interface working against its own purpose.
+I found the project through a data ethics course and traced the real procedure from start to finish. It runs across three disconnected systems: an information portal, a generic payment module, and a case management system. The applicant downloads one of two PDF forms (one for adults, one for minors), fills it in outside the platform, and uploads it. The payment is found by searching a fee code by hand. The receipt is downloaded and uploaded again in a third system. The result arrives by email. Then the applicant books an in-person appointment at a motorization office, where agendas were full in the weeks before the rule took effect.
 
-This project treats that procedure as a systems problem: what is the minimum set of data this process actually needs, who needs to provide it and when, and how does a service built on that minimum look and feel — rather than a faster version of the same form.
+One community blog documented, with a screenshot, a section meant to explain how to request the tag that uses the word "cancel" at a key point. That is a real example of the interface working against its own purpose.
 
-## Problem statement
+The problem is structural, not cosmetic. Every applicant gets the same undifferentiated list of documents, whatever their age, citizenship or legal status. Payment and application feel like two unrelated events. Nobody classified which data the law requires and which data the form simply asks for.
 
-The surface-level framing — "this government form is confusing" — undersells the actual problem. The friction isn't cosmetic; it's structural. The current procedure never classifies which data is legally required versus merely requested "to be safe," never adapts to the applicant's actual situation (minor vs. adult, EU vs. non-EU citizen, individual vs. business) before asking for documents, and separates payment from the request it belongs to so completely that a successful payment and a completed application are, from the user's point of view, two unrelated events.
+### Constraints
 
-The real problem is a service designed with no information architecture behind it — every applicant profile is handled by the same undifferentiated wall of text and file uploads, regardless of what actually applies to them. Fixing the copy without fixing that structure would still leave people uploading documents they don't need.
+This is a self-directed project. There was no client brief, no access to real applicants, and no way to test against the live platform. The research is real and public. Every decision was checked against documented friction and against GDPR text, not against users.
 
-## Constraints
-
-This is a self-directed project with no client brief, no access to real applicants, and no way to usability-test against the live government platform. The regulatory research is real — sourced directly from the Portale dell'Automobilista, government-published decree summaries, and Italian mobility/insurance publications covering the rule as it rolled out — but every design decision was validated against that documented friction and against GDPR text, not against user testing. There is no validation loop with real users behind any of the flows in this project, and I'm naming that plainly rather than implying otherwise.
-
-A second constraint was deliberate scope discipline: the regulation itself opens up several edge cases (delegated third-party filing, non-parental legal guardianship, tag renewal/expiry, non-resident applicants) that this project documents but does not design for, to keep the core system legible rather than exhaustive.
-
-## Process & decisions
-
-**Data classification as the starting point, not a copy pass.** Before any screen existed, I built a data taxonomy for every field the real procedure could plausibly request, grouped by category (identity, applicant status, vehicle, payment, contact), each tagged required / conditional / optional with a rationale. I rejected treating this as a documentation exercise done after the UI — the conditional branches this taxonomy produced (age, citizenship, applicant type) became the actual navigation logic of the onboarding flow, not an afterthought layered on top of static screens.
-
-**A four-branch conditional tree instead of one flat form.** The real procedure presents every possible document requirement to every applicant at once. I rejected that in favor of a decision tree: number of scooters being registered → applicant type (individual/business) → for individuals, age and citizenship → each branch surfacing only the fields and documents that actually apply. A 14–17-year-old applicant sees a parental-responsibility step; an adult EU citizen never does. This was the single highest-leverage decision in the project — it's the direct, structural answer to the "wall of undifferentiated requirements" problem named above.
-
-**Removing the pay-then-re-upload cycle.** The current system requires the applicant to pay in one system, download a receipt, and manually re-upload it in a third, unrelated system to complete their application. I rejected replicating that pattern even in simplified form — the redesigned payment flow generates the payment reference and the receipt automatically within the same flow, with no file leaving the user's hands and coming back.
-
-**Turning administrative silence into a visible, recoverable state.** The real confirmation step is an email with a pass/fail outcome and no further detail — a rejection gives the applicant no way back into their own application. I rejected a simple "approved/rejected" binary in favor of three explicit states (approved, rejected, under review), where rejection links directly back to the specific field or document that failed, instead of forcing a restart.
-
-**Treating the transfer/cancellation case as a data-minimization exercise, not a feature to skip.** The real system offers no assisted path when a scooter changes hands: the seller cancels, the buyer starts over, with no link between the two. I considered a more "helpful" version where the seller enters the buyer's email to link both applications, and rejected it — it would mean one party handling another party's personal data for no functional necessity. The tag holder instead cancels their own registration and receives a reference code to hand off; the buyer starts an independent application using that code. Less connected, but no personal data crosses between two people who don't need to share any.
-
-**Deliberately not designing a fines/enforcement history feature.** Early in the project I considered a violation/zone-monitoring history as part of the ongoing status view. I rejected building it out as a designed flow — there's no evidence this data exists in the real procedure today, and a feature that logs a user's location-tied enforcement history carries meaningfully more regulatory exposure (verging on behavioral profiling) than anything else in this project. It's documented as a data-architecture decision — what would be logged, for what purpose, with what user control over visibility and retention — without being given screens, so the reasoning is on record without inventing a speculative feature.
-
-**GDPR as design input, not a compliance afterthought.** Three articles shaped concrete decisions rather than staying abstract: Article 5(1)(c) (data minimization) underwrote every required/optional classification in the taxonomy; Articles 12–14 (transparency, plain-language information) shaped the requirement that every field explain, in one line, why it's being asked for; Article 25 (data protection by design) is the argument for why the conditional tree exists at the architecture level rather than as a UI convenience.
-
-## Artifacts
-
-- A complete data taxonomy across five categories (applicant identity, applicant status, vehicle data, payment, contact), each field marked required / conditional / optional with rationale.
-- A conditionality tree covering: applicant type, age-triggered parental consent (14–17 range), EU/non-EU citizenship documentation branching, batch registration for multiple scooters, and the transfer/cancellation sub-flow.
-- Screen-grouping maps for five flows: onboarding & data classification, payment, confirmation, ongoing status, and transfer/cancellation.
-- Five Figma Make prototypes (Italian-language interface, mobile-first), one per flow, built as an extension of the NEXIA design system rather than as new components.
-- A documented before/after comparison, flow by flow, tracing each redesigned decision back to a specific, sourced friction point in the real Portale dell'Automobilista procedure.
-
-## Outcomes
-
-This is a concept project: there is no live product, no deployment, and no usage data. What it produced is a structurally complete, GDPR-grounded redesign of a real, currently-live government procedure — validated against documented friction in that procedure, not against user testing. Any claim about reduced applicant anxiety, completion time, or error rates would be a hypothesis, not a result, and I'm treating it as one rather than stating it as fact.
+The official procedure asks the applicant to sign in with the national digital identity (SPID or CIE). I assume this step exists and I do not prototype it. Four edge cases are documented and left out of scope: filing through a delegated third party, legal guardians who are not parents, tag renewal or expiry, and non-resident applicants.
 
 ## Product Reality
 
-**Business reality.** This project has no commercial buyer in its current form — it's self-initiated, not commissioned. If it existed as a real product, the plausible business case is a B2C compliance-assistance service (a paid or freemium layer over a free government process, similar to how private services already exist around PagoPA-based procedures in Italy), or a B2B layer for scooter-sharing/fleet operators who need to register many units at once and would value the batch-registration path built into this system. The risk it reduces for an individual user is financial (avoiding a €100–800 fine) and administrative (avoiding a rejected, restart-from-zero application); I don't have a defensible metric for either without real usage data, so I'm not inventing one.
+### Who carries the risk
 
-**Operational reality.** A few real failure modes were designed for explicitly: a failed payment does not discard onboarding data already entered — the user resumes rather than restarts; a rejected application links back to the specific failing field rather than forcing a full resubmission; a booking attempt against a saturated UMC office schedule (a documented real-world problem in the weeks before the law took effect) surfaces alternative offices or dates instead of leaving the user stuck. I have not designed for concurrent-actor conflicts (e.g., a seller and buyer both acting on the same tag at once) or for what happens if a user abandons the flow mid-application and returns days later — both are open questions a real implementation would need to resolve.
+The applicant carries the legal risk. A wrong "you are fine" can end in a fine. A slow "not yet" only costs time. That asymmetry shaped the status labels. The product separates submitted, under review, approved and active, and it never shows "active" before the physical tag is collected.
 
-**What I'd do differently as a real product.** With a real team and funding, the first thing I'd change is validation: none of the conditional logic in this project has been tested against an actual applicant, and edge cases in Italian bureaucracy tend to be more numerous and more particular than any solo research pass will surface. I'd also want direct confirmation from a legal/compliance advisor on the GDPR basis-of-processing distinction between the current form (largely legal-obligation-based, not consent-based) and my redesign's transparency copy, rather than relying on my own reading of the regulation.
+### Friction kept on purpose
 
-## Learnings
+- Identity check through the official channel. It is a legal requirement, and I assume it without designing it.
+- Guardian data and signature for applicants aged 14 to 17. The real procedure requires it.
+- One migratory document for non-EU applicants, because eligibility depends on it.
+- Payment before review. The real procedure works in this order and I did not change it. What happens to the fee after a rejection is an open question (see below).
+- In-person pickup of the physical tag.
 
-Working through this project sharpened something I'd only partially internalized before: data minimization isn't a principle you apply at the end of a form, in a privacy notice — it's a branching decision that has to exist before the first screen does. The conditional tree, not the UI polish, is where the actual ethics of this project live, and that's the part I'd point to first if asked what's load-bearing here. I also became more comfortable naming what a project doesn't cover, and why, as a legitimate part of the deliverable — the "documented but out of scope" edges (delegated filing, guardianship, renewal, non-residents) taught me that scope discipline reads as maturity, not as a gap, when it's stated on purpose instead of discovered by omission.
+### Friction removed
+
+- Three disconnected systems became one flow with a persistent state.
+- The manual receipt download and re-upload disappeared. The receipt is generated inside the flow.
+- One flat document list became conditional blocks, based on age, citizenship and applicant type.
+- A silent email result became three visible states: approved, rejected, under review.
+- A rejection stopped being a dead end. It points to the failing field.
+
+### Data protection
+
+I read GDPR as a design input, not as a final check. Article 5(1)(c) (data minimization) drove every required, conditional and optional label. Articles 12 to 14 (transparency) drove the one-line reason shown next to each field. Article 25 (data protection by design) is the argument for putting the conditional tree in the architecture. The legal basis for most of this data is probably legal obligation under Article 6(1)(c), not consent. That matters: a field cannot be called "optional" in the copy if the law requires it. I read the regulation myself. A privacy lawyer has not reviewed it.
+
+### Business reality
+
+The procedure is a public service, so the buyer depends on the model. A public agency could adopt the design as a service redesign. A third-party assistance product would need official sign-in and delegation rules that I have not solved. A B2B layer for fleet operators who register many scooters at once is supported by the batch registration in the design. Which of these is real depends on access to the official platform, which I do not have. I have no price or willingness-to-pay data.
+
+### What I would do differently as a real product
+
+First, confirm how a third party can connect to the official platform at all, and get a privacy review of the data classification. Second, test the rejection and review states with real applicants before anything else. Those are the states where trust is lost.
+
+## Worst-case states
+
+The happy path is the easy part of a regulated flow. This table lists the states that decide whether people trust it, and it says plainly which ones I designed.
+
+| Situation | What the system does | Status |
+| --- | --- | --- |
+| A document is rejected (unreadable, or does not match the data) | Shows the specific reason in plain language, links to the failing field, keeps all other data | Designed and prototyped |
+| The same document is rejected a second time | Proposal: stop the loop and offer an assisted path, such as an appointment at the office | Proposed, not prototyped |
+| Application stays under manual review | A dedicated "under review" state with a placeholder estimate. The real review time is unknown | State designed. Behavior after a missed estimate is open |
+| Payment fails | Keeps all onboarding data, allows a retry, disables "back" during the transaction to avoid double payment | Designed. Server-side duplicate protection is an engineering task |
+| Application is rejected after payment | The fee and any refund path are not defined, because the sources do not say | Open |
+| Upload times out or the session expires mid-application | Progress survives going back and a failed payment. Timeouts and expiry are not specified | Open |
+| Offices have no free appointments | Suggests another nearby office or the next available dates | Designed and prototyped |
+
+## What I designed
+
+### Data classification before screens
+
+I built a taxonomy of every field the procedure could ask for. It has five categories: applicant identity, applicant status, vehicle, payment and contact. Each field is marked required, conditional or optional, with a reason. The conditional branches in that taxonomy became the navigation logic of the onboarding.
+
+### A conditional tree, not one flat form
+
+The flow asks how many scooters are registered, then whether the applicant is a person or a business. For a person, age and citizenship decide what comes next. An applicant aged 14 to 17 sees the guardian step. An adult EU citizen never does. A non-EU applicant picks one migratory document out of three, not all three. This was the decision with the most effect on the project.
+
+### Payment inside the same flow
+
+The amount is calculated and shown line by line, including the multiplier when several scooters are registered together. The payment reference is generated from data the system already has. The receipt appears in the flow. Nothing leaves the user's hands and comes back.
+
+### Confirmation with three states
+
+Approved, rejected and under review each have their own screen and next action. For an approved application, the user picks an office and a time. If the office is full, the system suggests alternatives instead of leaving the user stuck.
+
+### Status as a living view
+
+The real procedure ends at pickup. The status view keeps going. It shows the state of the tag, the state of the insurance link and early warnings before the insurance expires, because the fine risk does not end with the application.
+
+### Transfer and cancellation with less data
+
+When a scooter is sold, the seller cancels their own tag and gets a reference code. The buyer starts an independent application with that code. I considered linking the two applications through the buyer's email and rejected it. It would make one person handle another person's data without any need.
+
+### A fines history that is documented, not designed
+
+I considered a history of fines and checks in the status view. I did not design it. There is no evidence that this data exists in the real procedure, and a location-linked enforcement log carries the highest regulatory exposure in the project, close to behavioral profiling. It is documented as a data decision only: what would be stored, why, and what control the user would have over visibility and retention.
+
+## Tools
+
+Figma Make, NEXIA Design System (extended, not rebuilt). Five Italian-language, mobile-first prototypes: onboarding, payment, confirmation, status, and transfer.
+
+## What I learned
+
+Data minimization is not a paragraph in a privacy notice. It is a branching decision that has to exist before the first screen. The conditional tree, more than the visual layer, is where the ethics of this project sit.
+
+I also learned to read a compliance flow from its worst states backwards. Writing the table above showed me three gaps I had not seen while designing the happy path: the refund after a rejection, the second rejection, and the session timeout. Naming them in the case study is more useful than hiding them. I also stopped treating all friction as the enemy. Some of it is the law, and the design job is to keep that part clear and remove the rest.
