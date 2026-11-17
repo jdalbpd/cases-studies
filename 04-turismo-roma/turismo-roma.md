@@ -1,54 +1,135 @@
 ---
 title: "Turismo Roma"
-subtitle: "Concept project — B2B trust and availability platform for Rome's tourism sector"
+subtitle: "Concept project: a B2B trust layer that verifies licensed operators before they touch scarce inventory"
 role: "Product Designer"
 tools: ["Figma", "Figma Make", "Claude (AI-assisted)"]
-tags: ["design-systems", "concept-project", "b2b", "trust-and-identity", "fintech-adjacent"]
+tags: ["trust-architecture", "credential-verification", "b2b", "compliance", "exception-states", "design-systems"]
 status: "concept"
-date: "2026-08"
-summary: "A B2B platform that verifies licensed tour guides in real time and gives agencies visibility into official ticket availability, designed to counter guide impersonation and ticket scalping in Rome."
+date: "2026-11"
+summary: "A concept for real-time credential verification in a B2B platform. A two-axis state model separates system failures from verification results, and graduated access limits abuse without blocking honest operators."
 ---
 
-## Context
+# Turismo Roma
 
-Rome received 27.7 million visitors in 2025. Growth continued into 2026, up 3.8% year-over-year. That volume surfaced two operational problems the tourism sector has not been able to solve on its own.
+A B2B platform has to decide, in real time, whether to trust the holder of a credential. If it trusts the wrong person, an impostor gets access to scarce inventory. If it distrusts the right person, an honest operator loses a working day. This project is a design for that decision, built as a concept from market research. There was no client and no access to production data.
 
-- **Guide impersonation.** Unlicensed guides operate actively, especially in high season. This undercuts licensed professionals and produces inconsistent experiences for tourists, sometimes fraudulent ones. The one direct precedent, GimmeGuide, is an Italian platform that admits only licensed guides and was presented to the Senate. It has limited territorial adoption and no dominant presence in Rome.
-- **Digital ticket scalping.** Bots exhaust official Colosseum ticket allocations within seconds. This forces legitimate agencies and individual tourists into resale markets at inflated prices. The issue escalated to Italy's competition authority (Antitrust) and its anti-corruption authority (ANAC) in 2026.
+The instance I worked on is Rome's licensed tour guides, the agencies that hire them, and official Colosseum tickets as the scarce inventory. The pattern is broader: verify an operator against an official registry, then tie what they can do to the result.
 
-Both problems share the same root cause. No reliable verification or access mechanism exists in an ecosystem where trust is handled manually, informally, or not at all.
+## Contents
 
-**Market context.** The global tour-operator software market sits between USD 0.9 and 1.1 billion in 2026, growing at a double-digit CAGR. Adoption is 78% SaaS/cloud, and small-to-medium businesses make up 80.6% of the customer base. That profile matches a typical independent Roman agency closely. The dominant players (Bókun, Rezdy, Regiondo, TrekkSoft, FareHarbor) compete on generic tour inventory and booking. None of them address the identity-verification and availability problems specific to Rome. Local Italian software (SferaNET, X-Travel, SiteForTravel) covers backoffice and accounting, not experience operators. Attraction-side ticketing platforms (Tiqets, vivenu, ROLLER) sell timed-entry systems to institutions, not to the agencies and guides who depend on getting into that same inventory. That gap, a trust and availability layer for the professional demand side, is where this project sits.
+- [Product Reality](#product-reality)
+- [Trust architecture](#trust-architecture)
+- [Exception states](#exception-states)
+- [Real-time data constraints](#real-time-data-constraints)
+- [Flows and screens](#flows-and-screens)
+- [Design system](#design-system)
+- [Outcomes](#outcomes)
+- [Tools](#tools)
+- [What I learned](#what-i-learned)
+- [What I'd do differently as a real product](#what-id-do-differently-as-a-real-product)
 
-**Scoping the audience.** The underlying needs split into two groups by buyer. One is a B2B toolset for agencies and guides: guide verification, ticket availability, a lightweight backoffice/CRM, WhatsApp integration, regulatory alerts. These live under one product with several modules, used by the same person every day. The other is a separate institutional tool for redistributing tourist flow across the city, sold to Roma Capitale or Zètema, with a different buyer and a different sales cycle entirely. This project scopes to the first group. A single, pitchable value proposition made more sense than a scattered set of concepts.
+## Product Reality
 
-## What I designed
+### Business reality
 
-**MVP scope.** Guide verification and ticket availability form the core of the product. They have the clearest differentiation, the least direct competition, and a natural connection to fintech-style identity verification. A lightweight backoffice/CRM is documented as a future expansion module, not part of v1, since that segment is already served, if imperfectly, by existing players.
+Why the product exists. Verifying a guide today is manual and informal. Unlicensed guides work next to licensed ones, and bots empty official ticket allocations within seconds. In 2026 the ticket problem reached Italy's competition authority (Antitrust) and its anti-corruption authority (ANAC).
 
-**A two-axis verification state system.** Instead of a single pass/fail check, verification separates *query outcome* (did the system reach the official registry?) from *license status* (what did it find?). This distinction matters in practice. A registry outage should never read as "guide not licensed." That is a system problem, not the guide's. Five license states each carry their own severity and access behavior:
+What it solves. An agency gets a fast way to confirm a credential before relying on a guide. The platform also links ticket quota to verified status, so quota does not go to someone who should not hold it.
 
-| State | Severity | Access behavior |
-|---|---|---|
-| Valid | Positive | Full access |
-| Expired | Mild | Reduced quota, 15-day grace window |
-| Suspended | Moderate | Reduced quota, 2-day grace window |
-| Revoked | High | Full block, requires a new official inquiry via case code |
-| No match | Maximum | Full block, escalating messaging after repeated attempts |
-<br/><br/>
+Risk it reduces. Two risks: impersonation (operating with no valid license) and overselling (quota assigned to the wrong person).
 
-**A graduated access model, not a binary switch.** Expired and suspended guides don't lose access outright. They keep a reduced ticket quota (illustrated in the design as 200 down to 50) while a grace window runs. The suspended window is shorter on purpose, 2 days against 15 for expired. The reasoning: a suspension is the guide's own most urgent problem to fix, while an expiration is often just administrative oversight. An active-renewal case code lets a guide who already started the process keep full access past the 15-day mark. That way, the system doesn't penalize someone who is waiting on the administration, not on their own inaction. If the window closes with no resolution, the quota drops to zero. At that point it works the same as a hard block.
+Business metric. The share of an agency's inventory handled by verified guides. I have not measured it. It is the number I would track first.
 
-**A non-accusatory path out of "no match."** Instead of a dead end, repeated failed lookups (4 attempts within 24 hours) surface a message pointing toward the official licensing process, without accusing anyone of impersonation. The attempt counter resets every 24 hours, so a legitimate guide who mistypes their own credentials, or hits a system fault, isn't punished permanently for it.
+Buyer. The agency pays. The guide is a user, not a payer. Small and medium businesses are about 80% of the tour-software customer base, which matches a typical independent Roman agency. Existing booking tools run from free tiers up to about USD 300 a month, plus commissions of roughly 1% to 6%. None of them verify credentials. Attraction-side ticketing systems sell to institutions, not to the agencies waiting outside them. That gap is where this product sits.
 
-**Five core flows**, designed as one coherent product instead of five separate apps:
-1. **On-the-spot verification**: QR/NFC scan or manual lookup, resolving instantly to one of the six states above.
-2. **Trust dashboard**: an agency's aggregate view of every guide it works with, grouped by severity so issues surface first.
-3. **Guide onboarding**: registration verified instantly against Italy's national tourist guide registry, the Elenco Nazionale delle Guide Turistiche. That registry already issues a QR-based digital tesserino, real infrastructure this design builds on rather than around.
-4. **Agency onboarding**: registration verified through Partita IVA (Italian VAT number), resolving to the same state system.
-5. **Ticket availability panel**: read-only in v1, aggregating each agency's real quota as the sum of its verified guides' individual allocations, using the Colosseum as the pilot site.
+### Operational reality
 
-**Visual language.** The interface borrows from Design Italia, the official design system used across Italian public administration sites, including the Ministero del Turismo and the national electronic ID platform. The goal was for the product to read as part of the same trusted ecosystem it verifies against. Not as a third-party startup layered on top of it.
+These are the failure modes I designed for first, before any visual work.
+
+| Scenario | What the system does |
+|---|---|
+| Bad input (a typo in a license number) | Shows "No match". After 4 failed tries in 24 hours, adds a message about the official licensing process. It does not accuse anyone. The counter resets every 24 hours. |
+| Registry unavailable | Shows a neutral "query failed" state. The guide keeps the last known status. The system re-verifies the next day. |
+| Status changes mid-session | Open question. Every scan re-verifies, and the dashboard shows the date of the last check. A recheck at ticket-use time is left for engineering to decide. |
+| Abandoned renewal | The grace window ends and quota drops to zero. |
+| Expired license | Reduced quota for 15 days. A renewal case code keeps full access while the official process is still running. |
+| Actors see different information | The registry result is the single source of truth. The tourist sees a simplified version of the same state. The platform never overrides the registry. |
+
+## Trust architecture
+
+The structure is familiar from fintech onboarding. This is an analogy for how I framed the problem. It is not production experience.
+
+| In this product | Fintech equivalent |
+|---|---|
+| Agency onboarding with Partita IVA (Italian VAT number) | KYB, business verification |
+| Guide check against the national tourist guide registry | KYC, credential check |
+| Ticket quota per guide | Transaction or exposure limit |
+| Grace window | Remediation period |
+| Case code on a revoked license | Re-screening request |
+| Internal log of failed lookups | Audit trail |
+
+The central decision is a two-axis state model. Axis A is the query outcome: did the system reach the registry? Axis B is the license status: what did the registry say? Keeping them apart stops an outage from reading as "this guide is not licensed". That would be a false block caused by the platform, not by the person.
+
+Strictness is not the same everywhere. Revoked and no-match states have no exceptions. Expired and suspended states get a grace window. A false block costs an honest guide a working day. A false pass lets an impostor sell. The access rules reflect that imbalance.
+
+## Exception states
+
+Five license states, each with its own severity, behavior, and way out.
+
+| State | Severity | Access | Way out |
+|---|---|---|---|
+| Valid | Positive | Full | None needed |
+| Expired | Mild | Reduced quota, 15-day window | Renew, or enter a renewal case code |
+| Suspended | Moderate | Reduced quota, 2-day window | Resolve the suspension |
+| Revoked | High | Full block | Enter a new case code, which triggers a fresh registry check |
+| No match | Maximum | Full block | Re-check the data, or start the official licensing process |
+
+Reduced quota is shown in the design as 200 tickets down to 50. That figure is an illustration, not real allocation data. The suspended window is shorter than the expired one on purpose. A suspension is the guide's most urgent problem. An expiry is often a missed deadline. If a window closes with no resolution, quota goes to zero and the state behaves like a block.
+
+A case code never unlocks anything by itself. For a revoked license, it only triggers a new registry check. Access returns only if the registry confirms a valid license. How those codes are issued and validated belongs to backend engineering.
+
+The "no match" copy points toward action without alarm: "No encontramos ningún registro con estos datos, te recomendamos verificar." A typo and an impersonation attempt look the same on the first try. The message has to work for both.
+
+## Real-time data constraints
+
+- The registry is the source of truth. The platform stores the last known state and the time of the last verification.
+- During an outage, the guide keeps the last known state. The system retries the next day.
+- A revocation can happen after the last check. Re-verifying on every scan and showing the last verification date reduces that gap. It does not remove it.
+- Failed lookups are logged internally in v1: scanned identifier, time, and location when relevant. Escalation to a review team or a guides' association is planned for a later version.
+
+Three assumptions are not validated. I do not know whether the registry exposes suspension and revocation as separate states. I do not know whether third parties can integrate with it. I do not know how fast status changes appear in it. The national registry does issue a digital card with a QR code, so a verification path exists. The rest needs a conversation with the registry's owner.
+
+## Flows and screens
+
+Five flows, designed as one product with one shared state system.
+
+1. On-the-spot verification. QR or NFC scan, or manual search for people without camera access. One primary action, "scan again". Recovery actions only appear in states that need them.
+2. Trust dashboard. An agency sees every guide it works with, grouped by severity so problems surface first. Each row shows the state, the last verification date, and available quota. The tax code is partly masked in the list and shown in full only on the profile.
+3. Guide onboarding. Four fields: name, surname, tax code, license number. The result comes back instantly in the same state system.
+4. Agency onboarding. Registration with Partita IVA, resolving to the same states.
+5. Ticket availability panel. Read-only in v1. An agency's quota is the sum of its verified guides' individual quotas, so the total always explains itself. Only the Colosseum is functional. The other sites are placeholders.
+
+Tourists get a simplified result with no recovery actions. Agencies get the full version.
+
+## Design system
+
+The visual language follows Design Italia, the design system used across Italian public administration, with an institutional blue and Titillium Web. The goal was for the product to look like part of the ecosystem it verifies against.
+
+Two rules keep the color system honest. Severity colors are used only for license state and never mixed with the brand blue. The color scale for ticket availability is separate from the severity scale, so a low-quota guide never looks like a revoked one.
+
+The system is documented through the state specification and one prompt per flow, with shared components for every state. I did not build a token pipeline for this project. That is a gap I would close first in a real handoff.
+
+## Outcomes
+
+This is a concept project, so there are no production results. These are the hypotheses I would test, and how I would measure each one.
+
+| Hypothesis | Measure |
+|---|---|
+| Verification is fast enough to use on the spot | Time from scan to displayed state |
+| Honest operators are rarely blocked by mistake | Share of blocks later reversed by a valid registry check |
+| The grace window leads to regularization | Share of expired or suspended guides who resolve within the window |
+| The retry limit separates typos from abuse | Failed lookups per credential, per 24 hours |
+| Quota follows verified status | Share of agency quota assigned to verified guides |
 
 ## Tools
 
@@ -56,8 +137,16 @@ Figma, Figma Make, Claude (AI-assisted)
 
 ## What I learned
 
-Treating guide verification as an identity-trust problem, the same logic used in fintech KYC flows, was the most useful reframe in this project. It's a pattern that transfers cleanly to a domain that has never used it before.
+Reframing guide verification as an identity-trust problem was the most useful move. It gave me a known structure to work with: onboarding checks, limits, remediation, audit trail.
 
-The harder design problem wasn't the clean states, like Valid or Revoked. It was building enough nuance into the graduated-access model so the system stays firm on abuse. No quiet exceptions for Revoked or No match. At the same time, it shouldn't punish ordinary administrative delay.
+The harder part was the middle of the system. Valid and revoked are easy to design. Expired and suspended need rules that stay firm on abuse and still allow for ordinary administrative delay.
 
-Some of the underlying assumptions are explicitly flagged as unvalidated in the project documentation: how quota gets distributed in practice, real renewal timelines, and whether the national registry even exposes suspension data to third parties. This was built from market research, not from access to the actual licensing infrastructure, so those gaps are honest ones.
+Writing the operational reality early changed the design. The query-failed state and the case-code exception both came from asking what happens when something goes wrong, before drawing screens.
+
+## What I'd do differently as a real product
+
+- Start with registry access: available fields, latency, and whether third parties can integrate. Several rules in this design depend on those answers.
+- Test the 2-day and 15-day windows with real guides and agencies before fixing them.
+- Replace the message-only response to repeated no-match attempts with a manual review queue.
+- Add an immutable audit trail with a named reviewer for any quota override.
+- Design the scan flow as a mobile experience. Scanning a badge in the field is a phone task, and this concept stayed on desktop.
